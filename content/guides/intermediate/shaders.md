@@ -213,7 +213,7 @@ You can think of a vec4 as a table with 4 numbers, like { x, y, z, w }.
 
 `Image tex` is the texture of our draw call, like the image from `love.graphics.draw(image)`.
 
-`vec2 texture_coords` are the [uv-coordinates](#UV-coordinates) defined by the vertices of our mesh or automatically by LÖVE for images and similar [0-1].
+`vec2 texture_coords` are the [uv-coordinates](#uv-coordinates) defined by the vertices of our mesh or automatically by LÖVE for images and similar [0-1].
 
 `vec2 screen_coords` are the coordinates on screen, [0.5 to love_ScreenSize.xy-0.5].
 
