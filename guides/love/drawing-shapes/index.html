@@ -160,11 +160,11 @@
 <li>height - the height in pixels.</li>
 </ul>
 <p>This leaves us with a rectangle of 100x50 pixels starting at 50,50:</p>
-<iframe class="love-embed" id="love-iframe-756" src="/love-cookbook/assets/love/love-js" width="200" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-874" src="/love-cookbook/assets/love/love-js" width="200" height="200"></iframe>
 <script>
-const iframe_756 = document.getElementById('love-iframe-756');
-iframe_756.addEventListener('load', function() {
-iframe_756.contentWindow.postMessage({lua: `love.window.setMode(200, 200) 
+const iframe_874 = document.getElementById('love-iframe-874');
+iframe_874.addEventListener('load', function() {
+iframe_874.contentWindow.postMessage({lua: `love.window.setMode(200, 200) 
 function love.draw()
  love.graphics.rectangle("fill", 50, 50, 100, 50)
 end
@@ -186,11 +186,11 @@ end
     love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">rectangle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> <span class="token number">325</span><span class="token punctuation">,</span> <span class="token number">75</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 </code></pre>
-<iframe class="love-embed" id="love-iframe-910" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-109" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_910 = document.getElementById('love-iframe-910');
-iframe_910.addEventListener('load', function() {
-iframe_910.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_109 = document.getElementById('love-iframe-109');
+iframe_109.addEventListener('load', function() {
+iframe_109.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.rectangle("line", 100, 60, 100, 50)
@@ -235,11 +235,11 @@ end
 </ul>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Notice that unlike rectangles we provide the <strong>center</strong> position here!</p>
 </div>
-<iframe class="love-embed" id="love-iframe-383" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-664" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_383 = document.getElementById('love-iframe-383');
-iframe_383.addEventListener('load', function() {
-iframe_383.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_664 = document.getElementById('love-iframe-664');
+iframe_664.addEventListener('load', function() {
+iframe_664.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.circle("line", 100, 60, 32)
@@ -277,11 +277,11 @@ end
     <span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 </code></pre>
-<iframe class="love-embed" id="love-iframe-49" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-403" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_49 = document.getElementById('love-iframe-49');
-iframe_49.addEventListener('load', function() {
-iframe_49.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_403 = document.getElementById('love-iframe-403');
+iframe_403.addEventListener('load', function() {
+iframe_403.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.line(50, 50, 100, 100)
@@ -316,11 +316,11 @@ end
 </code></pre>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>The default point size of 1 pixel makes it a little tricky to spot so for the second example (highlighted above) we use <a href="https://love2d.org/wiki/love.graphics.setPointSize" target="_blank"><code>love.graphics.setPointSize</code></a> to make them a bit bigger.</p>
 </div>
-<iframe class="love-embed" id="love-iframe-573" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-623" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_573 = document.getElementById('love-iframe-573');
-iframe_573.addEventListener('load', function() {
-iframe_573.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_623 = document.getElementById('love-iframe-623');
+iframe_623.addEventListener('load', function() {
+iframe_623.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setPointSize(1)
  love.graphics.setColor(0.29, 0.56, 0.58)
@@ -360,11 +360,11 @@ end
     <span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 </code></pre>
-<iframe class="love-embed" id="love-iframe-20" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-831" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_20 = document.getElementById('love-iframe-20');
-iframe_20.addEventListener('load', function() {
-iframe_20.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_831 = document.getElementById('love-iframe-831');
+iframe_831.addEventListener('load', function() {
+iframe_831.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.polygon(
@@ -409,11 +409,11 @@ end
 </code></pre>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Notice that like circles we provide the <strong>center</strong> position here!</p>
 </div>
-<iframe class="love-embed" id="love-iframe-859" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-962" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_859 = document.getElementById('love-iframe-859');
-iframe_859.addEventListener('load', function() {
-iframe_859.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_962 = document.getElementById('love-iframe-962');
+iframe_962.addEventListener('load', function() {
+iframe_962.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.ellipse("line", 100, 100, 32, 16)
@@ -461,11 +461,11 @@ end
     love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span><span class="token string">"line"</span><span class="token punctuation">,</span> <span class="token string">"closed"</span><span class="token punctuation">,</span> <span class="token number">700</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span>pi<span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 </code></pre>
-<iframe class="love-embed" id="love-iframe-254" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-715" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_254 = document.getElementById('love-iframe-254');
-iframe_254.addEventListener('load', function() {
-iframe_254.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_715 = document.getElementById('love-iframe-715');
+iframe_715.addEventListener('load', function() {
+iframe_715.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 function love.draw()
  love.graphics.setColor(0.29, 0.56, 0.58)
  love.graphics.print("pie", 100, 20)
@@ -524,11 +524,11 @@ end
 </code></pre>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Try pressing the <code>up</code> and <code>down</code> keys to change the line width!</p>
 </div>
-<iframe class="love-embed" id="love-iframe-885" src="/love-cookbook/assets/love/love-js" width="450" height="300"></iframe>
+<iframe class="love-embed" id="love-iframe-534" src="/love-cookbook/assets/love/love-js" width="450" height="300"></iframe>
 <script>
-const iframe_885 = document.getElementById('love-iframe-885');
-iframe_885.addEventListener('load', function() {
-iframe_885.contentWindow.postMessage({lua: `love.window.setMode(450, 300) 
+const iframe_534 = document.getElementById('love-iframe-534');
+iframe_534.addEventListener('load', function() {
+iframe_534.contentWindow.postMessage({lua: `love.window.setMode(450, 300) 
 local line_width = 4
 function love.draw()
  love.graphics.setLineWidth(line_width)
@@ -629,11 +629,11 @@ end
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Don't worry if a lot of this is unfamiliar!</p>
 <p>Some of the concepts like the transformation stack (<code>love.graphics.push/pop/translate/scale</code>) will be covered in later chapters.</p>
 </div>
-<iframe class="love-embed" id="love-iframe-248" src="/love-cookbook/assets/love/love-js" width="200" height="350"></iframe>
+<iframe class="love-embed" id="love-iframe-174" src="/love-cookbook/assets/love/love-js" width="200" height="350"></iframe>
 <script>
-const iframe_248 = document.getElementById('love-iframe-248');
-iframe_248.addEventListener('load', function() {
-iframe_248.contentWindow.postMessage({lua: `love.window.setMode(200, 350) 
+const iframe_174 = document.getElementById('love-iframe-174');
+iframe_174.addEventListener('load', function() {
+iframe_174.contentWindow.postMessage({lua: `love.window.setMode(200, 350) 
 local function draw_leaf(x, y, rotation)
  local leaf_height = 50
  local leaf_half_width = 5
