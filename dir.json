@@ -3,13 +3,25 @@
     
       {
         "title": "Getting started",
-        "url": "/guides/getting-started/",
+        "url": "/guides/installation/getting-started/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Collision resolution",
+        "url": "/guides/advanced/collision-resolving/",
         "abstract": ""
       },
     
       {
         "title": "Physics",
         "url": "/guides/advanced/physics/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Stencil states",
+        "url": "/guides/advanced/stencil-states/",
         "abstract": ""
       },
     
@@ -56,20 +68,26 @@
       },
     
       {
+        "title": "Build Tools",
+        "url": "/guides/exporting/build-tools/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Distribution",
+        "url": "/guides/exporting/distribution/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Web Export",
+        "url": "/guides/exporting/web-export/",
+        "abstract": ""
+      },
+    
+      {
         "title": "VSCode",
         "url": "/guides/installation/vscode/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Collision resolution",
-        "url": "/guides/intermediate/collision-resolving/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Stencil states",
-        "url": "/guides/intermediate/stencil-states/",
         "abstract": ""
       },
     
@@ -86,6 +104,12 @@
       },
     
       {
+        "title": "Drawing text",
+        "url": "/guides/love/drawing-text/",
+        "abstract": ""
+      },
+    
+      {
         "title": "Functions",
         "url": "/guides/lua-basics/functions/",
         "abstract": "A callback is a function that is passed to another function. The latter function will, at some point, call the callback, often while passing useful information."
@@ -95,6 +119,12 @@
         "title": "Variables",
         "url": "/guides/lua-basics/variables/",
         "abstract": "Local variables are variables that are only available within the scope they are created."
+      },
+    
+      {
+        "title": "Modding",
+        "url": "/guides/recipes/modding/",
+        "abstract": ""
       },
     
       {
@@ -117,7 +147,7 @@
     
       {
         "title": "Compute Shaders",
-        "url": "/guides/intermediate/compute-shaders/",
+        "url": "/guides/shaders/compute-shaders/",
         "abstract": ""
       },
     
@@ -134,56 +164,56 @@
       },
     
       {
+        "title": "Metatables",
+        "url": "/guides/lua-advanced/metatables/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Modulo",
+        "url": "/guides/lua-advanced/modulo/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Nested for-loops",
+        "url": "/guides/lua-advanced/nested-for-loops/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Require",
+        "url": "/guides/lua-advanced/require/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Scope",
+        "url": "/guides/lua-advanced/scope/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Ternary operators",
+        "url": "/guides/lua-advanced/ternary-operators/",
+        "abstract": ""
+      },
+    
+      {
         "title": "Recap",
         "url": "/guides/lua-basics/recap/",
         "abstract": ""
       },
     
       {
-        "title": "Metatables",
-        "url": "/guides/lua-intermediate/metatables/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Modulo",
-        "url": "/guides/lua-intermediate/modulo/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Nested for-loops",
-        "url": "/guides/lua-intermediate/nested-for-loops/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Require",
-        "url": "/guides/lua-intermediate/require/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Scope",
-        "url": "/guides/lua-intermediate/scope/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Ternary operators",
-        "url": "/guides/lua-intermediate/ternary-operators/",
-        "abstract": ""
-      },
-    
-      {
         "title": "Standard library",
-        "url": "/guides/lua-intermediate/standard-library/",
+        "url": "/guides/lua-advanced/standard-library/",
         "abstract": ""
       },
     
       {
         "title": "String patterns",
-        "url": "/guides/lua-intermediate/string-patterns/",
+        "url": "/guides/lua-advanced/string-patterns/",
         "abstract": ""
       },
     
@@ -195,31 +225,31 @@
     
       {
         "title": "Box Blur",
-        "url": "/guides/intermediate/box-blur/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Outlines",
-        "url": "/guides/intermediate/outlines/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Palette",
-        "url": "/guides/intermediate/palette/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Pixelation",
-        "url": "/guides/intermediate/pixelation/",
+        "url": "/guides/shaders/box-blur/",
         "abstract": ""
       },
     
       {
         "title": "Shaders",
-        "url": "/guides/intermediate/shaders/",
+        "url": "/guides/shaders/introduction/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Outlines",
+        "url": "/guides/shaders/outlines/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Palette",
+        "url": "/guides/shaders/palette/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Pixelation",
+        "url": "/guides/shaders/pixelation/",
         "abstract": ""
       },
     
@@ -231,13 +261,13 @@
     
       {
         "title": "Vertex Shaders",
-        "url": "/guides/intermediate/vertex-shaders/",
+        "url": "/guides/shaders/vertex-shaders/",
         "abstract": ""
       },
     
       {
         "title": "OOP",
-        "url": "/guides/intermediate/oop/",
+        "url": "/guides/advanced/oop/",
         "abstract": ""
       },
     
@@ -291,19 +321,13 @@
     
       {
         "title": "Coroutines",
-        "url": "/guides/intermediate/coroutines/",
+        "url": "/guides/lua-advanced/coroutines/",
         "abstract": ""
       },
     
       {
         "title": "",
         "url": "/dir.json",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Fiddle",
-        "url": "/guides/fiddle/",
         "abstract": ""
       },
     

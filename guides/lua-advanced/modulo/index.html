@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LÖVE Cookbook | Modulo</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modulo</title>
+<meta name="title" content="Modulo">
+<meta name="author" content="Sheepolution">
+<meta name="description" content="We have demonstrated the different type of arithmetic operators (+, -, *, / and ^), but there is one operator we have yet to mention. The modulo operator, for which we use the character %.">
+<meta name="generator" content="eleventy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diminim.github.io/love-cookbook/guides/lua-advanced/modulo/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Modulo">
+<meta property="og:description" content="We have demonstrated the different type of arithmetic operators (+, -, *, / and ^), but there is one operator we have yet to mention. The modulo operator, for which we use the character %.">
+<meta property="og:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta property="og:image:alt" content="LÖVE Cookbook">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://diminim.github.io/love-cookbook/guides/lua-advanced/modulo/">
+<meta name="twitter:title" content="Modulo">
+<meta name="twitter:description" content="We have demonstrated the different type of arithmetic operators (+, -, *, / and ^), but there is one operator we have yet to mention. The modulo operator, for which we use the character %.">
+<meta name="twitter:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta name="twitter:image:alt" content="LÖVE Cookbook">
+<link rel="canonical" href="https://diminim.github.io/love-cookbook/guides/lua-advanced/modulo/">
+
+    <script src="/love-cookbook/assets/js/codeblock.js"></script>
+    <script src="/love-cookbook/assets/js/hover_preview.js"></script>
+    <script src="/love-cookbook/assets/js/mobile.js"></script>
+
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/main.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/prism.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/markdown.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sidebar">
+      <header>
+        <a href="/love-cookbook/">
+            <div class="logo">
+                <img class="logo-unhover-img" src="/love-cookbook/assets/logo.png">
+                <img class="logo-hover-img" src="/love-cookbook/assets/logo_hover.png">
+            </div>
+
+            <h1>LÖVE Cookbook</h1>
+        </a>
+      </header>
+
+      <nav class="table-of-contents">
+        <ul class="chapters"><li class="group-header">Installation<ul class="guides"><li><a class="" href="/love-cookbook/guides/installation/getting-started/">Getting started</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/love/">LÖVE</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/vscode/">VSCode</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/neovim/">Neovim</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Basics<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-basics/lua/">Lua</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/variables/">Variables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/functions/">Functions</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/if-statements/">If-statements</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/tables/">Tables and for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/gotchas/">Gotchas</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/recap/">Recap</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Advanced<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-advanced/require/">Require</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/scope/">Scope</a>
+                  </li><li><a class="active" href="/love-cookbook/guides/lua-advanced/modulo/">Modulo</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/nested-for-loops/">Nested for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/standard-library/">Standard library</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/string-patterns/">String patterns</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/ternary-operators/">Ternary operators</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/metatables/">Metatables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/coroutines/">Coroutines</a>
+                  </li></ul>
+
+            </li><li class="group-header">LÖVE Introduction<ul class="guides"><li><a class="" href="/love-cookbook/guides/love/drawing-image/">Drawing an image</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-shapes/">Drawing shapes</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-text/">Drawing text</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/playing-audio/">Playing audio</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/input/">Input</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/filesystem/">Filesystem</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/deltatime/">Deltatime</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/reading-errors/">Reading errors</a>
+                  </li></ul>
+
+            </li><li class="group-header">Basic Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/basic/aabb/">AABB</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/angle-and-distance/">Angle &amp; distance</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/tiles/">Tiles</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
+                  </li></ul>
+
+            </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/advanced/oop/">OOP</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
+                  </li></ul>
+
+            </li><li class="group-header">Shaders<ul class="guides"><li><a class="" href="/love-cookbook/guides/shaders/introduction/">Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/compute-shaders/">Compute Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/box-blur/">Box Blur</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/outlines/">Outlines</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/palette/">Palette</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/pixelation/">Pixelation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/vertex-shaders/">Vertex Shaders</a>
+                  </li></ul>
+
+            </li><li class="group-header">Exporting<ul class="guides"><li><a class="" href="/love-cookbook/guides/exporting/distribution/">Distribution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/web-export/">Web Export</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/build-tools/">Build Tools</a>
+                  </li></ul>
+
+            </li><li class="group-header">Recipes<ul class="guides"><li><a class="" href="/love-cookbook/guides/recipes/screen-resizing/">Screen resizing</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/steam/">Steam</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/modding/">Modding</a>
+                  </li></ul>
+
+            </li></ul>
+
+      </nav>
+    </div>
+
+    <main>
+      <article class="guide">
+        
+<header class="guide-header">
+  <button type="button" class="menu-button">
+    <i class="material-symbols-outlined">menu</i>
+  </button>
+
+  <h1 class="title">Modulo</h1>
+</header>
+
+<p>We have demonstrated the different type of arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> and <code>^</code>), but there is one operator we have yet to mention. The <strong>modulo operator</strong>, for which we use the character <code>%</code>.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token number">17</span>
+<span class="token keyword">local</span> b <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token function">print</span><span class="token punctuation">(</span>a <span class="token operator">%</span> c<span class="token punctuation">)</span> <span class="token comment">-- Output: 2</span>
+</code></pre>
+<p>Modulo calculates the <ins>remainder</ins>. In the example above, the output is <code>2</code>. That is because, if you keep extracting <code>5</code> from <code>17</code>, <code>2</code> is what <ins>remains</ins>.</p>
+<ul>
+<li><code>17 - 5 = 12</code></li>
+<li><code>12 - 5 = 7</code></li>
+<li><code>7 - 5 = 2</code> ✔️</li>
+<li><code>2 - 5 = -3</code> ❌</li>
+</ul>
+<p>The modulo operator is extremely useful. For example, we can use it to check if a number is <ins>odd</ins> or <ins>even</ins>.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">odd_or_even</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> n <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">then</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Even!"</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Odd!"</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token function">odd_or_even</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Odd!</span>
+<span class="token function">odd_or_even</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Even!</span>
+<span class="token function">odd_or_even</span><span class="token punctuation">(</span><span class="token number">486</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Even!</span>
+<span class="token function">odd_or_even</span><span class="token punctuation">(</span><span class="token number">7295621</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Odd!</span>
+</code></pre>
+<p>Or we can check which day of the week a certain date is.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> days <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"Monday"</span><span class="token punctuation">,</span> <span class="token string">"Tuesday"</span><span class="token punctuation">,</span> <span class="token string">"Wednesday"</span><span class="token punctuation">,</span>
+    <span class="token string">"Thursday"</span><span class="token punctuation">,</span> <span class="token string">"Friday"</span><span class="token punctuation">,</span> <span class="token string">"Saturday"</span><span class="token punctuation">,</span>
+    <span class="token string">"Sunday"</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">check_day</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>days<span class="token punctuation">[</span><span class="token punctuation">(</span>date <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">7</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token function">check_day</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Friday</span>
+<span class="token function">check_day</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Sunday</span>
+<span class="token function">check_day</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Thursday</span>
+<span class="token function">check_day</span><span class="token punctuation">(</span><span class="token number">38285</span><span class="token punctuation">)</span> <span class="token comment">-- Output: Tuesday</span>
+</code></pre>
+<p>The line <code>days[(date - 1) % 7 + 1]</code> includes the <code>- 1</code> and <code>+ 1</code> because the first element in a Lua table is at index <code>1</code>. Without, <code>check_day(14)</code> would turn into <code>14 % 7</code>, which results into <code>0</code>, and there is nothing to be found at <code>days[0]</code>.</p>
+<p>To prevent this, we use this trick:</p>
+<ol>
+<li>Decrease date by 1 (<code>14 - 1</code>).</li>
+<li>Now the modulo operator checks <code>13 % 7</code>, which results into <code>6</code>.</li>
+<li>We increase the number by 1 (<code>6 + 1</code>).</li>
+</ol>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Lua has what we call <ins>1-based indexing</ins>, meaning that tables start counting from <code>1</code>. In many other programming languages, lists (often called <ins>arrays</ins>) start counting from <code>0</code>. Because of this, they won't have to use the same trick. It is the reason that programmers often prefer <ins>0-based indexing</ins>. Lua gave preference to a user-friendly design philosophy.</p>
+</div>
+
+
+<footer class="guide-footer">
+  <p></p>
+
+  <p>By:
+  
+      <em>Sheepolution</em>
+    
+  </p>
+</footer>
+      </article>
+    </main>
+
+  </body>
+</html>

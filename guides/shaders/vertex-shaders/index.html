@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LÖVE Cookbook | Vertex Shaders</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertex Shaders</title>
+<meta name="title" content="Vertex Shaders">
+<meta name="author" content="Jasper">
+<meta name="description" content="Vertex shaders are programs which calculate the final position of a vertex on screen.">
+<meta name="generator" content="eleventy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diminim.github.io/love-cookbook/guides/shaders/vertex-shaders/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Vertex Shaders">
+<meta property="og:description" content="Vertex shaders are programs which calculate the final position of a vertex on screen.">
+<meta property="og:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta property="og:image:alt" content="LÖVE Cookbook">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://diminim.github.io/love-cookbook/guides/shaders/vertex-shaders/">
+<meta name="twitter:title" content="Vertex Shaders">
+<meta name="twitter:description" content="Vertex shaders are programs which calculate the final position of a vertex on screen.">
+<meta name="twitter:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta name="twitter:image:alt" content="LÖVE Cookbook">
+<link rel="canonical" href="https://diminim.github.io/love-cookbook/guides/shaders/vertex-shaders/">
+
+    <script src="/love-cookbook/assets/js/codeblock.js"></script>
+    <script src="/love-cookbook/assets/js/hover_preview.js"></script>
+    <script src="/love-cookbook/assets/js/mobile.js"></script>
+
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/main.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/prism.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/markdown.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sidebar">
+      <header>
+        <a href="/love-cookbook/">
+            <div class="logo">
+                <img class="logo-unhover-img" src="/love-cookbook/assets/logo.png">
+                <img class="logo-hover-img" src="/love-cookbook/assets/logo_hover.png">
+            </div>
+
+            <h1>LÖVE Cookbook</h1>
+        </a>
+      </header>
+
+      <nav class="table-of-contents">
+        <ul class="chapters"><li class="group-header">Installation<ul class="guides"><li><a class="" href="/love-cookbook/guides/installation/getting-started/">Getting started</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/love/">LÖVE</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/vscode/">VSCode</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/neovim/">Neovim</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Basics<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-basics/lua/">Lua</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/variables/">Variables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/functions/">Functions</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/if-statements/">If-statements</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/tables/">Tables and for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/gotchas/">Gotchas</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/recap/">Recap</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Advanced<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-advanced/require/">Require</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/scope/">Scope</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/modulo/">Modulo</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/nested-for-loops/">Nested for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/standard-library/">Standard library</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/string-patterns/">String patterns</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/ternary-operators/">Ternary operators</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/metatables/">Metatables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/coroutines/">Coroutines</a>
+                  </li></ul>
+
+            </li><li class="group-header">LÖVE Introduction<ul class="guides"><li><a class="" href="/love-cookbook/guides/love/drawing-image/">Drawing an image</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-shapes/">Drawing shapes</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-text/">Drawing text</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/playing-audio/">Playing audio</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/input/">Input</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/filesystem/">Filesystem</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/deltatime/">Deltatime</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/reading-errors/">Reading errors</a>
+                  </li></ul>
+
+            </li><li class="group-header">Basic Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/basic/aabb/">AABB</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/angle-and-distance/">Angle &amp; distance</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/tiles/">Tiles</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
+                  </li></ul>
+
+            </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/advanced/oop/">OOP</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
+                  </li></ul>
+
+            </li><li class="group-header">Shaders<ul class="guides"><li><a class="" href="/love-cookbook/guides/shaders/introduction/">Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/compute-shaders/">Compute Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/box-blur/">Box Blur</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/outlines/">Outlines</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/palette/">Palette</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/pixelation/">Pixelation</a>
+                  </li><li><a class="active" href="/love-cookbook/guides/shaders/vertex-shaders/">Vertex Shaders</a>
+                  </li></ul>
+
+            </li><li class="group-header">Exporting<ul class="guides"><li><a class="" href="/love-cookbook/guides/exporting/distribution/">Distribution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/web-export/">Web Export</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/build-tools/">Build Tools</a>
+                  </li></ul>
+
+            </li><li class="group-header">Recipes<ul class="guides"><li><a class="" href="/love-cookbook/guides/recipes/screen-resizing/">Screen resizing</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/steam/">Steam</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/modding/">Modding</a>
+                  </li></ul>
+
+            </li></ul>
+
+      </nav>
+    </div>
+
+    <main>
+      <article class="guide">
+        
+<header class="guide-header">
+  <button type="button" class="menu-button">
+    <i class="material-symbols-outlined">menu</i>
+  </button>
+
+  <h1 class="title">Vertex Shaders</h1>
+</header>
+
+<p>Vertex shaders are programs which calculate the final position of a <a href="#vertex">vertex</a> on screen.</p>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>This guide is made for LÖVE 12.0!</p>
+</div>
+<p>This guide assumes you've read the <a href="../shaders" data-preview="../shaders">Shaders</a> guide.</p>
+<p>Let's start with the standard shader LÖVE uses and break it down.</p>
+<pre><code class="language-glsl"><span data-attrs=""></span><span class="token keyword">varying</span> <span class="token keyword">vec4</span> vpos<span class="token punctuation">;</span>
+
+<span class="token keyword">vec4</span> <span class="token function">position</span><span class="token punctuation">(</span><span class="token keyword">mat4</span> transform_projection<span class="token punctuation">,</span> <span class="token keyword">vec4</span> vertex_position<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    vpos <span class="token operator">=</span> vertex_position<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> transform_projection <span class="token operator">*</span> vertex_position<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>varying</code> is a keyword which defines a variable that will be shared between the <a href="#vertex">vertex</a> and fragment shader stage.<br>
+By default, these values are interpolated, meaning halfway between, for example, pure red and green, the final value will be [0.5, 0.5, 0.0]</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> PI13 <span class="token operator">=</span> math<span class="token punctuation">.</span>pi <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">/</span> <span class="token number">3</span>
+<span class="token keyword">local</span> mesh <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newMesh</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token punctuation">{</span> <span class="token number">100</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>PI13 <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">120</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>PI13 <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token number">100</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>PI13 <span class="token operator">*</span> <span class="token number">3</span> <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">120</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>PI13 <span class="token operator">*</span> <span class="token number">3</span> <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token number">100</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>PI13 <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span>     <span class="token number">120</span> <span class="token operator">+</span> math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>PI13 <span class="token operator">+</span> math<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span>     <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"triangles"</span><span class="token punctuation">,</span> <span class="token string">"static"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> love<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>mesh<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+</code></pre>
+<iframe class="love-embed" id="love-iframe-881" src="/love-cookbook/assets/love/love-js" width="200" height="200"></iframe>
+<script>
+const iframe_881 = document.getElementById('love-iframe-881');
+iframe_881.addEventListener('load', function() {
+iframe_881.contentWindow.postMessage({lua: `love.window.setMode(200, 200) 
+local PI13 = math.pi * 2 / 3
+local mesh = love.graphics.newMesh({
+ { 100 + math.cos(PI13 * 2 + math.pi / 6) * 100, 120 + math.sin(PI13 * 2 + math.pi / 6) * 100, 0, 0, 1, 0, 0 },
+ { 100 + math.cos(PI13 * 3 + math.pi / 6) * 100, 120 + math.sin(PI13 * 3 + math.pi / 6) * 100, 0, 0, 0, 1, 0 },
+ { 100 + math.cos(PI13 + math.pi / 6) * 100, 120 + math.sin(PI13 + math.pi / 6) * 100, 0, 1, 0, 0, 1 },
+}, "triangles", "static")
+function love.draw()
+ love.graphics.draw(mesh)
+end
+`}, '*');
+});
+</script>
+<p><code>mat4 transform_projection</code> is the variable which is doing all of the hard work,<br>
+it's the <a href="#Matrices">matrix</a> which stores the current coordinate system transform, so translation, rotation and scale and the <a href="#Projection-Matrix">projection matrix</a>.<br>
+By default LÖVE uses an <a href="#Orthographic">orthographic</a> <a href="#Projection-Matrix">projection matrix</a> which goes [-10, 10] on the z-axis, meaning if objects are outside of that range, they won't be visible anymore.<br>
+This is because the z values of the pixels will lie outside of the [-1 to 1] range and GLSL will skip drawing those.</p>
+<p><code>vec4 vertex_position</code> is the input <a href="#vertex">vertex</a>'s position, by default <code>w = 1</code>, any time a position is multiplied with a <a href="#Projection-Matrix">projection matrix</a>, it should be <code>1</code> otherwise it will cause issues.</p>
+<p>Let's do some shader magic and create a <a href="#vertex">vertex</a> shader which automatically covers the entire screen with a single triangle, instead of having to create a 1x1 image like we did before.</p>
+<h2 id="fullscreen-triangle" tabindex="-1">Fullscreen triangle <a class="anchor" href="#fullscreen-triangle">#</a></h2>
+<p>One thing to note is that this shader is written with <code>void vertexmain</code> instead of <code>vec4 position</code>, because we don't need the parameters it provides us.</p>
+<p><code>fullscreenTriangle.vs</code></p>
+<pre><code class="language-glsl"><span data-attrs=""></span><span class="token comment">// Store UV-Coordinates to be used in the fragment shader</span>
+<span class="token keyword">varying</span> <span class="token keyword">vec2</span> VarVertexCoord<span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">VERTEX</span></span>
+<span class="token keyword">void</span> <span class="token function">vertexmain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// We want a triangle which covers the entire screen, so we need to generate a triangle with vertices at the positions:</span>
+    <span class="token comment">// [0, 0], [0, 2], [2, 0]</span>
+    
+    <span class="token comment">// Bit shifting magic to create these coordinates</span>
+    VarVertexCoord <span class="token operator">=</span> <span class="token keyword">vec2</span><span class="token punctuation">(</span><span class="token punctuation">(</span>love_VertexID <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">2</span><span class="token punctuation">,</span> love_VertexID <span class="token operator">&amp;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">vec4</span> VarScreenPosition <span class="token operator">=</span> <span class="token keyword">vec4</span><span class="token punctuation">(</span>VarVertexCoord<span class="token punctuation">.</span>xy <span class="token operator">*</span> <span class="token keyword">vec2</span><span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token keyword">vec2</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    gl_Position <span class="token operator">=</span> VarScreenPosition<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre>
+<h2 id="technical-terms" tabindex="-1">Technical terms <a class="anchor" href="#technical-terms">#</a></h2>
+<h3 id="vertex" tabindex="-1">Vertex <a class="anchor" href="#vertex">#</a></h3>
+<p>A vertex is a point in 2D or 3D space, it's the most basic building block of any model.
+They're what's used to create triangles, which are then used to create more complex shapes.
+For example, a rectangle has 4 vertices, one on each corner forming two triangles.</p>
+<p>A vertex can contain more information than just a position. In fact, we can fully customize what a vertex contains.
+This is done with a <code>vertex format</code> which is the first input when creating a mesh.</p>
+<p>The default vertex format looks like this:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token punctuation">{</span>       
+    <span class="token punctuation">{</span> location <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> format <span class="token operator">=</span> <span class="token string">"floatvec2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>    
+    <span class="token punctuation">{</span> location <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> format <span class="token operator">=</span> <span class="token string">"floatvec2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+    <span class="token punctuation">{</span> location <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> format <span class="token operator">=</span> <span class="token string">"unorm8vec4"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>  
+<span class="token punctuation">}</span>       
+</code></pre>
+<p>The first entry defines format of the x, y position of the vertex.
+The location is used to tell the shader where to find this information, we can define this in our shader with <code>layout(location = 0) in vec2 position;</code>.
+the format is <code>floatvec2</code> which is just a <code>vec2</code> in GLSL.</p>
+<p>The second entry defines the <a href="../shaders/#uv-coordinates" data-preview="../shaders/#uv-coordinates">uv</a> coordinates of the vertex.</p>
+<p>And lastly the third entry defines the color of the vertex.
+This format is a bit different with <code>unorm8vec4</code>, a <code>norm</code> value means it's normalized to the range of [-1, 1]
+and <code>unorm</code> means it's normalized to the range of [0, 1].
+<code>8</code> means it's an 8-bit value, so it can be between 0 and 255. So, putting it all together, this is a <code>vec4</code> with values between 0 and 1.</p>
+<h3 id="matrices" tabindex="-1">Matrices <a class="anchor" href="#matrices">#</a></h3>
+<p>Matrices are a way to store a 2D array of values, like a 4x4 array of floats.
+Matrices are very useful for transforming coordinates, like rotating, scaling and translating.<br>
+Usually starting from the identity matrix, which looks like:</p>
+<pre><code>1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+</code></pre>
+<h3 id="projection-matrix" tabindex="-1">Projection-Matrix <a class="anchor" href="#projection-matrix">#</a></h3>
+<p>The projection matrix is a <a href="#Matrices">4x4 matrix</a> which brings the 3D world to a 2D screen, more specifically, transforms a 3D point in view space to a 2D point in <a href="#NDC-space">NDC space</a>.</p>
+<h3 id="ndc-space" tabindex="-1">NDC-space <a class="anchor" href="#ndc-space">#</a></h3>
+<p>Normalized Device Coordinates, a vec3 ranging from [-1, 1] on the x, y and z axis.<br>
+vec3(-1) is the top left corner of the screen, vec3(1) is the bottom right corner of the screen.</p>
+<h3 id="orthographic" tabindex="-1">Orthographic <a class="anchor" href="#orthographic">#</a></h3>
+<p>An orthographic projection is a way to project 3D objects to a 2D screen, without any perspective, meaning things don't get smaller the further away they are, as opposed to a perspective projection.</p>
+
+
+<footer class="guide-footer">
+  <p></p>
+
+  <p>By:
+  
+      <em>Jasper</em>
+    
+  </p>
+</footer>
+      </article>
+    </main>
+
+  </body>
+</html>

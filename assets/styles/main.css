@@ -326,7 +326,7 @@ main {
   border: .1rem solid var(--color-faded-2);
   border-radius: .25rem;
   background-color: var(--color-vanilla);
-
+  font-variant-ligatures: none;
   font-family: "Fira Code", serif;
   /* font-size: .9rem; */
 }

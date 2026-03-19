@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LÖVE Cookbook | OOP</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOP</title>
+<meta name="title" content="OOP">
+<meta name="author" content="ellraiser">
+<meta name="description" content="An example object for each of those could look like:">
+<meta name="generator" content="eleventy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diminim.github.io/love-cookbook/guides/advanced/oop/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="OOP">
+<meta property="og:description" content="An example object for each of those could look like:">
+<meta property="og:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta property="og:image:alt" content="LÖVE Cookbook">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://diminim.github.io/love-cookbook/guides/advanced/oop/">
+<meta name="twitter:title" content="OOP">
+<meta name="twitter:description" content="An example object for each of those could look like:">
+<meta name="twitter:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta name="twitter:image:alt" content="LÖVE Cookbook">
+<link rel="canonical" href="https://diminim.github.io/love-cookbook/guides/advanced/oop/">
+
+    <script src="/love-cookbook/assets/js/codeblock.js"></script>
+    <script src="/love-cookbook/assets/js/hover_preview.js"></script>
+    <script src="/love-cookbook/assets/js/mobile.js"></script>
+
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/main.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/prism.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/markdown.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sidebar">
+      <header>
+        <a href="/love-cookbook/">
+            <div class="logo">
+                <img class="logo-unhover-img" src="/love-cookbook/assets/logo.png">
+                <img class="logo-hover-img" src="/love-cookbook/assets/logo_hover.png">
+            </div>
+
+            <h1>LÖVE Cookbook</h1>
+        </a>
+      </header>
+
+      <nav class="table-of-contents">
+        <ul class="chapters"><li class="group-header">Installation<ul class="guides"><li><a class="" href="/love-cookbook/guides/installation/getting-started/">Getting started</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/love/">LÖVE</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/vscode/">VSCode</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/neovim/">Neovim</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Basics<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-basics/lua/">Lua</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/variables/">Variables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/functions/">Functions</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/if-statements/">If-statements</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/tables/">Tables and for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/gotchas/">Gotchas</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/recap/">Recap</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Advanced<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-advanced/require/">Require</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/scope/">Scope</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/modulo/">Modulo</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/nested-for-loops/">Nested for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/standard-library/">Standard library</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/string-patterns/">String patterns</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/ternary-operators/">Ternary operators</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/metatables/">Metatables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/coroutines/">Coroutines</a>
+                  </li></ul>
+
+            </li><li class="group-header">LÖVE Introduction<ul class="guides"><li><a class="" href="/love-cookbook/guides/love/drawing-image/">Drawing an image</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-shapes/">Drawing shapes</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-text/">Drawing text</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/playing-audio/">Playing audio</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/input/">Input</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/filesystem/">Filesystem</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/deltatime/">Deltatime</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/reading-errors/">Reading errors</a>
+                  </li></ul>
+
+            </li><li class="group-header">Basic Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/basic/aabb/">AABB</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/angle-and-distance/">Angle &amp; distance</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/tiles/">Tiles</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
+                  </li></ul>
+
+            </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="active" href="/love-cookbook/guides/advanced/oop/">OOP</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
+                  </li></ul>
+
+            </li><li class="group-header">Shaders<ul class="guides"><li><a class="" href="/love-cookbook/guides/shaders/introduction/">Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/compute-shaders/">Compute Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/box-blur/">Box Blur</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/outlines/">Outlines</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/palette/">Palette</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/pixelation/">Pixelation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/vertex-shaders/">Vertex Shaders</a>
+                  </li></ul>
+
+            </li><li class="group-header">Exporting<ul class="guides"><li><a class="" href="/love-cookbook/guides/exporting/distribution/">Distribution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/web-export/">Web Export</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/build-tools/">Build Tools</a>
+                  </li></ul>
+
+            </li><li class="group-header">Recipes<ul class="guides"><li><a class="" href="/love-cookbook/guides/recipes/screen-resizing/">Screen resizing</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/steam/">Steam</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/modding/">Modding</a>
+                  </li></ul>
+
+            </li></ul>
+
+      </nav>
+    </div>
+
+    <main>
+      <article class="guide">
+        
+<header class="guide-header">
+  <button type="button" class="menu-button">
+    <i class="material-symbols-outlined">menu</i>
+  </button>
+
+  <h1 class="title">OOP</h1>
+</header>
+
+<p>OOP is not just something you say when your code breaks, it stands for &quot;Object-Oriented Programming&quot;, and is a way of organising your code.<br>
+It is one of a few different architectures you can use when designing games. Another well-known one is ECS - &quot;Entity-Component-System&quot;, but this page is just for OOP!</p>
+<p>In this chapter we'll cover some basics around OOP and some ways to implement this in Lua, as well as work towards a larger example game!
+It's worth noting there are lots of different ways this can be achieved, and what is shown here is just one example.</p>
+<h2 id="approach" tabindex="-1">Approach <a class="anchor" href="#approach">#</a></h2>
+<p>The general idea for OOP is to break down the game into different classes, each with their own self-contained properties and logic required for their function.<br>
+You create instances of these classes, called objects, to populate your game.</p>
+<p>In this example we'll be working on making a classic arcade game - Asteroids.<br>
+If you break down the elements of Asteroids, there's (at least) 3 main classes that everything falls into:</p>
+<ul>
+<li>Player/Ship - The player ship has a position, health, it can move, rotate, and fire bullets.</li>
+<li>Asteroid - The asteroids has a position, it can move, be destroyed, and split into other asteroids.</li>
+<li>Bullet - Bullets are fired from the player, they have a position, angle, speed and can destroy asteroids.</li>
+</ul>
+<p>An example object for each of those could look like:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> player <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">,</span>
+  hp <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">,</span>
+  move <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span><span class="token punctuation">,</span>
+  fire <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">,</span>
+  y <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">,</span>
+  size <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>
+  move <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span><span class="token punctuation">,</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> bullet <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  y <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">,</span>
+  angle <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">,</span>
+  speed <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  collide <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Each class is a template for every object of that type - every asteroid is going to have the same properties and methods, as they all get created from the same class.</p>
+<p>Using an OOP approach might help you break down your game into these different &quot;blueprint&quot; classes, as well as help you keep logic in the right place - finding something related to player movement will be in the player class file, making it easy to keep track of.</p>
+<p>You can also rely on certain things based on the type of class - you know all asteroid objects have a size property, you know all bullet objects have a collide method etc.</p>
+<p>There's more to OOP than just the class/object system, but that's outside the scope of this tutorial. If you're interested in learning more you can have a read of the following resources:</p>
+<ul>
+<li><a href="https://www.freecodecamp.org/news/what-is-object-oriented-programming/">https://www.freecodecamp.org/news/what-is-object-oriented-programming/</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming">https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Object-oriented_programming">https://en.wikipedia.org/wiki/Object-oriented_programming</a></li>
+</ul>
+<p>While some languages provide classes &quot;out the box&quot;, Lua doesn't directly - but by using <a href="../../lua-intermediate/metatables" data-preview="../../lua-intermediate/metatables">metatables</a> we can create some systems to allow us to implement a robust OOP system.</p>
+<h2 id="creating-classes" tabindex="-1">Creating Classes <a class="anchor" href="#creating-classes">#</a></h2>
+<p>In Lua, both your classes and objects are just going to be your standard <a href="../../lua-basics/tables" data-preview="../../lua-basics/tables">tables</a>, with their properties and their functions inside them.</p>
+<p>Consider the following bad code, we'll explain why it's &quot;bad&quot; in a moment:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- asteroid "class"</span>
+<span class="token keyword">function</span> <span class="token function">newAsteroid</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+  <span class="token comment">-- new asteroid table</span>
+  <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+    y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+    angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    speed <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    size <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token comment">-- update script</span>
+    update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>x <span class="token operator">=</span> self<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+      self<span class="token punctuation">.</span>y <span class="token operator">=</span> self<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    <span class="token keyword">end</span><span class="token punctuation">,</span>
+    <span class="token comment">-- draw script</span>
+    draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+      love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> obj
+<span class="token keyword">end</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- make some asteroids</span>
+<span class="token keyword">local</span> asteroids <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span> <span class="token keyword">do</span>
+  table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>asteroids<span class="token punctuation">,</span> <span class="token function">newAsteroid</span><span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>So we have a function moonlighting as a &quot;class&quot; that makes a new asteroid &quot;object&quot;, defining some basic properties, and an update and a draw script.<br>
+We then call this 10 times, creating an asteroid somewhere in a 100x100px area, with a random initial angle in any direction.</p>
+<p>This seems like it would work fine (and technically it would), however it means that for each asteroid we're making new functions for both &quot;update&quot; and &quot;draw&quot; every single time.<br>
+In our loop we've created 20 new functions while making our asteroids!</p>
+<p>These functions are the same for every single asteroid, so really they should all use the &quot;same&quot; function.</p>
+<h2 id="basic-classes" tabindex="-1">Basic Classes <a class="anchor" href="#basic-classes">#</a></h2>
+<p>To make things more efficient, we should have one class table, and all objects created from that class should use that same &quot;blueprint&quot; for their functions and logic.</p>
+<p>This is where metatables come in, consider this bad boy:</p>
+<pre><code class="language-lua"><span data-attrs="13,14"></span><span class="token comment">-- asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+    <span class="token comment">-- new asteroid table</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+      size <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">-- the two magic lines</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    <span class="token comment">--</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- update script</span>
+  update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> self<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> self<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- draw script</span>
+  draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- destroy script</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"boom!"</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- make some asteroids</span>
+<span class="token keyword">local</span> asteroids <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span> <span class="token keyword">do</span>
+  table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>asteroids<span class="token punctuation">,</span> asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>Some new stuff to notice here - first we've changed our asteroid class definition from being just a function that returns a table to being an actual table with a <code>new</code> method.<br>
+This allows us to create new objects with <code>asteroid:new</code>, the <code>:</code> syntax passing the <code>asteroid</code> table as the first parameter, <code>self</code>.</p>
+<p>We then write these two magic lines which give us the basis of our OOP in Lua:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+</code></pre>
+<p>These lines are doing two things - first as you learnt in <a href="../../lua-intermediate/metatables" data-preview="../../lua-intermediate/metatables">metatables</a>, we're setting the metatable of our <code>obj</code> to be the <code>asteroid</code> table.<br>
+This means that any metamethods defined for <code>asteroid</code>, such as <code>__newindex</code> or <code>__index</code>, will be inherited by the <code>obj</code> table.</p>
+<p>The second line sets the <code>__index</code> metamethod to the <code>asteroid</code> table itself, which essentially means all the methods on the <code>asteroid</code> table will now be available on our <code>obj</code> table - acting as a template!</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> obj <span class="token operator">=</span> asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+<span class="token comment">-- the following line will print the same (e.g. function: 0x02eebff9b2c0) </span>
+<span class="token comment">-- which shows they are referring to the same function.</span>
+<span class="token function">print</span><span class="token punctuation">(</span>asteroid<span class="token punctuation">.</span>destroy<span class="token punctuation">,</span> obj<span class="token punctuation">.</span>destroy<span class="token punctuation">)</span>
+obj<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- will print "boom!"</span>
+</code></pre>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>If you&quot;re interested on how the two magic lines actually work, consider an example flow:</p>
+<ol>
+<li>We want to call <code>obj:destroy()</code></li>
+<li>First the system will check for an <code>obj.destroy</code> property to call - but it doesn't exist</li>
+<li>Then the system checks for a <code>obj.__index</code> metamethod</li>
+<li>Because we used <code>setmetatable</code>, our <code>obj.__index</code> is the same as <code>asteroid.__index</code></li>
+<li><code>asteroid.__index</code> is pointing at itself, the <code>asteroid</code> table</li>
+<li>The system will now check for an <code>asteroid.destroy</code> property to call - it finds one!</li>
+<li>The system calls <code>asteroid.destroy</code> passing the <code>obj</code> as the <code>self</code> parameter</li>
+</ol>
+</div>
+<h2 id="alternative-structures" tabindex="-1">Alternative Structures <a class="anchor" href="#alternative-structures">#</a></h2>
+<p>You might realise that we don't actually have to set <code>self.__index = self</code> in the <code>new</code> function above, as technically after the first object gets created this line is obsolete because we've already set <code>asteroid.__index</code> to <code>asteroid</code> once.</p>
+<p>Something like this would work just as well:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- another asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+    <span class="token comment">-- new asteroid table</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+      size <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">-- set the metatable as normal</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- destroy script</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"boom!"</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+<span class="token comment">-- set the __index here instead</span>
+asteroid<span class="token punctuation">.</span>__index <span class="token operator">=</span> asteroid
+</code></pre>
+<p>Having it dumped at the bottom of your class file can be a bit awkward and you might forget to add it though, which is why it normally gets tidied away into the <code>new</code> method.</p>
+<p>You could also define your class like this, breaking each definition out:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- yet another asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">-- set __index here</span>
+asteroid<span class="token punctuation">.</span>__index <span class="token operator">=</span> asteroid
+<span class="token comment">-- create script</span>
+asteroid<span class="token punctuation">.</span>new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+  <span class="token comment">-- new asteroid table</span>
+  <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+    y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+    angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    speed <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    size <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> obj
+<span class="token keyword">end</span>
+<span class="token comment">-- destroy script</span>
+asteroid<span class="token punctuation">.</span>destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"boom!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>Both approaches work exactly the same, it's just different styles based on your own preference and how you like to write your code!</p>
+<p>Now we have a basic class stucture, let's look at extended them!</p>
+<h2 id="extended-classes" tabindex="-1">Extended Classes <a class="anchor" href="#extended-classes">#</a></h2>
+<p>Extending a class means taking a class as a 'base' and adding or modifying it in some way.</p>
+<p>For example, you have an asteroid class for all the asteroids in the game, but what if we want a sort of 'boss' asteroid, some sort of giant planet that functions like an asteroid but has a few differences? We could code the planet logic into the asteroid class, but things could get messy quickly.</p>
+<p>Instead we could just have a planet class, that is made by extended the asteroid class - meaning we can re-use all the asteroid code and just focus on how the planet differs in functionality.</p>
+<p>There's a few different ways you could 'extend' a class to inherit the base properties and logic and then add to it or override it in an extended class.<br>
+They all have to deal with the problem of <code>setmetatable</code> only being able to set one table, not multiple.</p>
+<p>One option you could do is simply add to or override methods in the extended class in it's <code>new</code> call:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- basic asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> size<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      size <span class="token operator">=</span> size
+    <span class="token punctuation">}</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'boom!'</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- extended planet class</span>
+<span class="token keyword">local</span> planet <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+    obj<span class="token punctuation">.</span>destroy <span class="token operator">=</span> self<span class="token punctuation">.</span>destroy <span class="token comment">-- overwrite destroy script</span>
+    obj<span class="token punctuation">.</span>reposition <span class="token operator">=</span> self<span class="token punctuation">.</span>reposition <span class="token comment">-- add a new script</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'bigger boom!'</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  reposition <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> x
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> y
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- planet will have same properties as asteroid, plus script changes</span>
+<span class="token keyword">local</span> obj <span class="token operator">=</span> planet<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+obj<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- prints 'bigger boom!'</span>
+obj<span class="token punctuation">:</span><span class="token function">reposition</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token comment">-- 20</span>
+</code></pre>
+<p>This is fine, but having to define new methods in <code>new</code> might lead you to forgetting to update new scripts you add later - if you add another script to the <code>planet</code> table but don't define it in the <code>new</code> method then you won't be able to call it.</p>
+<p>You could instead do something like:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> planet <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token keyword">in</span> <span class="token function">pairs</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token keyword">do</span>
+      obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+    <span class="token keyword">end</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'bigger boom!'</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This would make sure any keys defined on the <code>planet</code> table would get added to all planet objects, and they'd still be a reference not a copy.</p>
+<p>If you want to melt your brain thinking about <code>__index</code> references and prefer the more definition led structure shown earlier, you could also do:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+asteroid<span class="token punctuation">.</span>new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> size<span class="token punctuation">)</span>
+  <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+    y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+    size <span class="token operator">=</span> size
+  <span class="token punctuation">}</span>
+  <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self <span class="token comment">-- note we're purposely setting __index here</span>
+  <span class="token keyword">return</span> obj
+<span class="token keyword">end</span>
+asteroid<span class="token punctuation">.</span>split <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span> <span class="token keyword">do</span>
+    asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>size<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'split!'</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+asteroid<span class="token punctuation">.</span>destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'boom!'</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- planet class</span>
+<span class="token keyword">local</span> planet <span class="token operator">=</span> asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+planet<span class="token punctuation">.</span>new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>x <span class="token operator">=</span> x
+  self<span class="token punctuation">.</span>y <span class="token operator">=</span> y
+  self<span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">1000</span>
+  <span class="token keyword">return</span> self
+<span class="token keyword">end</span>
+planet<span class="token punctuation">.</span>destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'bigger boom!'</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- check it all works!</span>
+<span class="token keyword">local</span> obj <span class="token operator">=</span> planet<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+obj<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- prints 'bigger boom!'</span>
+obj<span class="token punctuation">:</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- prints 'split!', still works!</span>
+</code></pre>
+<p>In this version, we're defining the <code>asteroid</code> class as normal, but for the <code>planet</code> class, we first make a new <code>asteroid</code> object to use AS our class.<br>
+This means when we call <code>asteroid:new()</code> we're passing in the <code>planet</code> table as the reference for the metatable, but because we created it initially as an <code>asteroid</code> object we have all the existing methods too.</p>
+<p>By extended classes you can make lots of variations of the same base class, and only need to modify the base class code for common changes - if you had a planet class and some new 'shipwreck' class that both extended the asteroid class, and decided you wanted to change how all asteroids move or split, you only need to edit the code for the base class and all other classes will be updated.</p>
+<p>If you want to see some more advanced examples of class and extension structures, you should check out rxi's <a href="https://github.com/rxi/classic/blob/master/classic.lua">classic</a>.</p>
+<p>This is small bit of code that lets you create classes, extend them, and also use 'mixins', which are essentially some predefined set of functions that you can then add to a class. You should be able to make sense of the code after what you've learned here and in the <a href="../../lua-intermediate/metatables" data-preview="../../lua-intermediate/metatables">metatables</a> page, or maybe try using it to build your own class system!</p>
+<h1 id="futher-abstraction" tabindex="-1">Futher Abstraction <a class="anchor" href="#futher-abstraction">#</a></h1>
+<p>You have your Player, Asteroid, and a Bullet class. All 3 have an 'x' and a 'y' and a 'direction' and a 'speed' - you could make some sort of generic 'Object' class and all 3 classes are extensions of that, which initially wouldn't be that useful as all you're doing is saving yourself writing out those four keys 3 times.</p>
+<p>However, if all those classes had some common logic, say some generic methods like a <code>destroy</code> or some default drawing code, then it might make sense to do this sort of abstraction.</p>
+<p>You could even play with having some common 'event' callback functions that your base class implements, that you can then define in your extended classes:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- create a generic object class</span>
+<span class="token keyword">local</span> object <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+object<span class="token punctuation">.</span>__index <span class="token operator">=</span> object
+object<span class="token punctuation">.</span>new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> dir<span class="token punctuation">,</span> speed<span class="token punctuation">)</span>
+  <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+    y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+    dir <span class="token operator">=</span> dir<span class="token punctuation">,</span>
+    speed <span class="token operator">=</span> speed<span class="token punctuation">,</span>
+    destroy_script <span class="token operator">=</span> <span class="token keyword">nil</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> obj
+<span class="token keyword">end</span>
+<span class="token comment">-- when object:destroy() is called check for a destroy_script</span>
+<span class="token comment">-- call that first if we have one</span>
+object<span class="token punctuation">.</span>destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> self<span class="token punctuation">.</span>destroy_script <span class="token keyword">then</span> self<span class="token punctuation">:</span><span class="token function">destroy_script</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'some default cleanup here!'</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- extend the object class to make an asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> object<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+asteroid<span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token comment">-- define the custom destroy script to run on destroy</span>
+asteroid<span class="token punctuation">.</span>destroy_script <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span> <span class="token keyword">do</span>
+    asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>size<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'split!'</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- call destroy, which in turn now calls our destroy_script as well</span>
+asteroid<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="event-callbacks" tabindex="-1">Event Callbacks <a class="anchor" href="#event-callbacks">#</a></h2>
+<p>With what we just looked at, you can see how you could have a way of setting up your own event callbacks, but what about the standard love events?</p>
+<p>Doing this is pretty easy, all you'd need to do is standardise the naming for the various event scripts across all your classes - if you make sure all asteroids and the player and bullets have an 'update' script and a 'draw' script, we can add all these objects into a big table and iterate over that inside the main love events.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- a list of objects to easily iterate over all objects</span>
+<span class="token keyword">local</span> all_asteroids <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">-- asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+    <span class="token comment">-- new asteroid table</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+      size <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>all_asteroids<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- update script</span>
+  update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> self<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed <span class="token operator">*</span> dt<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> self<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>speed <span class="token operator">*</span> dt<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">-- now in the love.update hook we can simply iterate through all objects</span>
+love<span class="token punctuation">.</span>update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>dt<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">#</span>all_asteroids <span class="token keyword">do</span>
+    <span class="token comment">-- all asteroids will have an update script, now called every frame</span>
+    all_asteroids<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token function">update</span><span class="token punctuation">(</span>dt<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>In this way you could set up callbacks for all the main events, <code>update</code>, <code>mousepressed</code>, <code>keypressed</code>, <code>draw</code>, and then let each of the objects handle their own logic when any of these events are called. Combine this with your own custom events, like say a <code>destroy</code> or a <code>gameover</code>, and you'll be able to have some complex logic without losing track of where everything is.</p>
+<p>You could also have different lists, maybe one for each type of class, and then you only iterate over the type of object you need rather than all of them.</p>
+<h2 id="overcomplicating" tabindex="-1">Overcomplicating <a class="anchor" href="#overcomplicating">#</a></h2>
+<p>When making a game with OOP, it's worth remembering that not every single thing has to fall under an object, and you do not always need to keep making more abstracted and 'simpler' objects - this can end up making things messier. OOP is a general approach to structuring the architecture of your game and helping you plan things out, but it doesn't have to be completely strict.</p>
+<p>In the example above we looked at making a generic class for all 3 classes to use. However say you had a 4th class, like a UI Button, that only had an 'x' and a 'y' - would you make an even more abstracted class with just an 'x' and a 'y' that the 'Object' itself extends? Probably not, where does it end! A class for just the 'x' property??? (don't do this)</p>
+<p>In the other direction, there will be things that don't quite fall inside one specific type of object - main menus, saving the game, incrementing score, drawing GUI, playing music etc. You might be tempted to just make one big 'Controller' object (a &quot;god object&quot;) that handles all of this larger logic, which is fine but it's very easy for this to snowball into a large and unwieldy file.</p>
+<p>The idea of a controller object is good though, you just might want to split that out into a few different ones, a central one for game states, one for audio, one for cutscenes. It also might be better to just have a few 'module' files, for common utility scripts - it doesn't have to be an object for every single function, and sometimes a function might make more sense sitting outside of objects.</p>
+<h2 id="asteroids!" tabindex="-1">Asteroids! <a class="anchor" href="#asteroids!">#</a></h2>
+<p>Here's one final example, using all the stuff just mentioned as well as everything else we've covered in this chapter to take a basic stab at creating Asteroids!</p>
+<p>We have a helper 'module' to store some reused scripts across classes, an asteroid class, a bullet class, and a player class.<br>
+We create a player, and a bunch of asteroids, and then use event callbacks to automatically update and draw our objects.</p>
+<p>Using &quot;W&quot; we can move forward, and use &quot;A&quot; and &quot;D&quot; to turn. Clicking with the mouse will fire a bullet that 'destroys' an asteroid!<br>
+You will flash red when you are 'hit' by an asteroid.</p>
+<p>If you go further down the page you can run the example code in your browser too!</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- a list of objects to easily iterate over all objects</span>
+<span class="token keyword">local</span> all_objects <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">-- helper/utility 'module'</span>
+<span class="token comment">-- we use these methods in both classes, so makes sense to sit outside the objects</span>
+<span class="token keyword">local</span> helper <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">-- set x delta using angle</span>
+  calculateVX <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> angle<span class="token punctuation">,</span> speed<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> value <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> speed<span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- set y delta using angle</span>
+  calculateVY <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> angle<span class="token punctuation">,</span> speed<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> value <span class="token operator">+</span> <span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span> <span class="token operator">*</span> speed<span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- check if an obj is colliding with a specific 'type' of object in the list</span>
+  checkCollision <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> type<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> o<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">#</span>all_objects <span class="token keyword">do</span>
+      <span class="token keyword">local</span> other <span class="token operator">=</span> all_objects<span class="token punctuation">[</span>o<span class="token punctuation">]</span>
+      <span class="token keyword">if</span> other <span class="token operator">~=</span> obj <span class="token keyword">and</span> other<span class="token punctuation">.</span>type <span class="token operator">==</span> type <span class="token keyword">and</span> <span class="token keyword">not</span> other<span class="token punctuation">.</span>destroyed
+      <span class="token keyword">and</span> obj<span class="token punctuation">.</span>x <span class="token operator">>=</span> other<span class="token punctuation">.</span>x <span class="token keyword">and</span> obj<span class="token punctuation">.</span>x <span class="token operator">&lt;=</span> other<span class="token punctuation">.</span>x<span class="token operator">+</span><span class="token number">16</span>
+      <span class="token keyword">and</span> obj<span class="token punctuation">.</span>y <span class="token operator">>=</span> other<span class="token punctuation">.</span>y <span class="token keyword">and</span> obj<span class="token punctuation">.</span>y <span class="token operator">&lt;=</span> other<span class="token punctuation">.</span>y<span class="token operator">+</span><span class="token number">16</span> <span class="token keyword">then</span>
+        <span class="token keyword">return</span> other
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">return</span> <span class="token keyword">nil</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- asteroid class</span>
+<span class="token keyword">local</span> asteroid <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    <span class="token comment">-- new asteroid table</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">,</span>
+      destroyed <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      type <span class="token operator">=</span> <span class="token string">'asteroid'</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>all_objects<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- update script</span>
+  update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>destroyed <span class="token keyword">then</span> <span class="token keyword">return</span> <span class="token keyword">nil</span> <span class="token keyword">end</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVX</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVY</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    <span class="token comment">-- bounce at edges of screen</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">or</span> self<span class="token punctuation">.</span>y <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">or</span> self<span class="token punctuation">.</span>x <span class="token operator">></span> <span class="token number">800</span> <span class="token keyword">or</span> self<span class="token punctuation">.</span>y <span class="token operator">></span> <span class="token number">600</span> <span class="token keyword">then</span>
+      self<span class="token punctuation">.</span>angle <span class="token operator">=</span> self<span class="token punctuation">.</span>angle <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- draw script</span>
+  draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>destroyed <span class="token keyword">then</span> <span class="token keyword">return</span> <span class="token keyword">nil</span> <span class="token keyword">end</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">rectangle</span><span class="token punctuation">(</span><span class="token string">'line'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- destroy script</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>destroyed <span class="token operator">=</span> <span class="token keyword">true</span> <span class="token comment">-- a 'fake' destroy, it's still in the list!</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- bullet class</span>
+<span class="token keyword">local</span> bullet <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> angle<span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>
+      collided <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      destroyed <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      type <span class="token operator">=</span> <span class="token string">'bullet'</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>all_objects<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- update script</span>
+  update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>destroyed <span class="token keyword">then</span> <span class="token keyword">return</span> <span class="token keyword">nil</span> <span class="token keyword">end</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVX</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVY</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> self<span class="token punctuation">.</span>speed<span class="token punctuation">)</span>
+    <span class="token comment">-- check if colliding with asteroid</span>
+    <span class="token keyword">local</span> hit <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">checkCollision</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">'asteroid'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> hit <span class="token keyword">then</span>
+      hit<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      self<span class="token punctuation">:</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- draw script</span>
+  draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>destroyed <span class="token keyword">then</span> <span class="token keyword">return</span> <span class="token keyword">nil</span> <span class="token keyword">end</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">'fill'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- destroy script</span>
+  destroy <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>destroyed <span class="token operator">=</span> <span class="token keyword">true</span> <span class="token comment">-- a 'fake' destroy, it's still in the list!</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- player class</span>
+<span class="token keyword">local</span> player <span class="token operator">=</span> <span class="token punctuation">{</span>
+  new <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> angle<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">rad</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      speed <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">,</span>
+      hp <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      collided <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      spr <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newCanvas</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      type <span class="token operator">=</span> <span class="token string">'player'</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">-- @TEMP </span>
+    <span class="token comment">-- this is just to draw a 'fake' sprite instead of using a texture+quad</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setCanvas</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>spr<span class="token punctuation">)</span>
+      love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">polygon</span><span class="token punctuation">(</span><span class="token string">'fill'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setCanvas</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">-- @TEMP</span>
+    <span class="token function">setmetatable</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>__index <span class="token operator">=</span> self
+    table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>all_objects<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> obj
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- update script</span>
+  update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dt<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> speed <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token comment">-- a + d to change angle, w + s to move forward + backward</span>
+    <span class="token keyword">if</span> love<span class="token punctuation">.</span>keyboard<span class="token punctuation">.</span><span class="token function">isDown</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token keyword">then</span> self<span class="token punctuation">.</span>angle <span class="token operator">=</span> self<span class="token punctuation">.</span>angle <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span> <span class="token operator">*</span> dt<span class="token punctuation">)</span> <span class="token keyword">end</span>
+    <span class="token keyword">if</span> love<span class="token punctuation">.</span>keyboard<span class="token punctuation">.</span><span class="token function">isDown</span><span class="token punctuation">(</span><span class="token string">'d'</span><span class="token punctuation">)</span> <span class="token keyword">then</span> self<span class="token punctuation">.</span>angle <span class="token operator">=</span> self<span class="token punctuation">.</span>angle <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">*</span> dt<span class="token punctuation">)</span> <span class="token keyword">end</span>
+    <span class="token keyword">if</span> love<span class="token punctuation">.</span>keyboard<span class="token punctuation">.</span><span class="token function">isDown</span><span class="token punctuation">(</span><span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">then</span> speed <span class="token operator">=</span> self<span class="token punctuation">.</span>speed <span class="token operator">*</span> dt <span class="token keyword">end</span>
+    <span class="token comment">-- reuse the helper scripts</span>
+    self<span class="token punctuation">.</span>x <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVX</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> speed<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>y <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">calculateVY</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> speed<span class="token punctuation">)</span>
+    <span class="token comment">-- see if we hit something!</span>
+    self<span class="token punctuation">.</span>collided <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">checkCollision</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">'asteroid'</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token keyword">nil</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- draw script</span>
+  draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>collided <span class="token keyword">then</span>
+      love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span>
+      love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>spr<span class="token punctuation">,</span> self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span><span class="token punctuation">,</span>
+  <span class="token comment">-- mousepress</span>
+  mousepressed <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+    bullet<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>y<span class="token punctuation">,</span> self<span class="token punctuation">.</span>angle<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- load game</span>
+love<span class="token punctuation">.</span>load <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">-- make a player</span>
+  <span class="token keyword">local</span> p <span class="token operator">=</span> player<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+  <span class="token comment">-- make some asteroids</span>
+  <span class="token keyword">for</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">30</span> <span class="token keyword">do</span>
+    asteroid<span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- love events</span>
+<span class="token comment">-- for all objects, check if there's an event script defined, then call it if so</span>
+love<span class="token punctuation">.</span>update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>dt<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">#</span>all_objects <span class="token keyword">do</span>
+    <span class="token keyword">if</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>update <span class="token keyword">then</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token function">update</span><span class="token punctuation">(</span>dt<span class="token punctuation">)</span> <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+love<span class="token punctuation">.</span>draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">#</span>all_objects <span class="token keyword">do</span>
+    <span class="token keyword">if</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>draw <span class="token keyword">then</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+love<span class="token punctuation">.</span>mousepressed <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">#</span>all_objects <span class="token keyword">do</span>
+    <span class="token keyword">if</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>mousepressed <span class="token keyword">then</span> all_objects<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token function">mousepressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>Try it out below!<br>
+Use &quot;W&quot; to move forward, &quot;A&quot; + &quot;D&quot; to turn left and right, and then click to fire. Pew pew!</p>
+<iframe class="love-embed" id="love-iframe-181" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<script>
+const iframe_181 = document.getElementById('love-iframe-181');
+iframe_181.addEventListener('load', function() {
+iframe_181.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+-- a list of objects to easily iterate over all objects
+local all_objects = {}
+-- helper/utility 'module'
+-- we use these methods in both classes, so makes sense to sit outside the objects
+local helper = {
+ -- set x delta using angle
+ calculateVX = function(value, angle, speed)
+ return value + (math.cos(angle) * speed)
+ end,
+ -- set y delta using angle
+ calculateVY = function(value, angle, speed)
+ return value + (math.sin(angle) * speed)
+ end,
+ -- check if an obj is colliding with a specific 'type' of object in the list
+ checkCollision = function(obj, type)
+ for o=1,#all_objects do
+ local other = all_objects[o]
+ if other ~= obj and other.type == type and not other.destroyed
+ and obj.x >= other.x and obj.x <= other.x+16
+ and obj.y >= other.y and obj.y <= other.y+16 then
+ return other
+ end
+ end
+ return nil
+ end
+}
+-- asteroid class
+local asteroid = {
+ new = function(self, x, y)
+ -- new asteroid table
+ local obj = {
+ x = x,
+ y = y,
+ angle = math.rad(love.math.random(0, 360)),
+ speed = love.math.random(1, 10)/10,
+ destroyed = false,
+ type = 'asteroid'
+ }
+ setmetatable(obj, self)
+ self.__index = self
+ table.insert(all_objects, obj)
+ return obj
+ end,
+ -- update script
+ update = function(self)
+ if self.destroyed then return nil end
+ self.x = helper.calculateVX(self.x, self.angle, self.speed)
+ self.y = helper.calculateVY(self.y, self.angle, self.speed)
+ -- bounce at edges of screen
+ if self.x < 0 or self.y < 0 or self.x > 800 or self.y > 600 then
+ self.angle = self.angle * -1
+ end
+ end,
+ -- draw script
+ draw = function(self)
+ if self.destroyed then return nil end
+ love.graphics.setColor(0, 1, 1)
+ love.graphics.rectangle('line', self.x, self.y, 16, 16)
+ end,
+ -- destroy script
+ destroy = function(self)
+ self.destroyed = true -- a 'fake' destroy, it's still in the list!
+ end
+}
+-- bullet class
+local bullet = {
+ new = function(self, x, y, angle)
+ local obj = {
+ x = x,
+ y = y,
+ angle = angle,
+ speed = 5,
+ collided = false,
+ destroyed = false,
+ type = 'bullet'
+ }
+ setmetatable(obj, self)
+ self.__index = self
+ table.insert(all_objects, obj)
+ return obj
+ end,
+ -- update script
+ update = function(self, dt)
+ if self.destroyed then return nil end
+ self.x = helper.calculateVX(self.x, self.angle, self.speed)
+ self.y = helper.calculateVY(self.y, self.angle, self.speed)
+ -- check if colliding with asteroid
+ local hit = helper.checkCollision(self, 'asteroid')
+ if hit then
+ hit:destroy()
+ self:destroy()
+ end
+ end,
+ -- draw script
+ draw = function(self)
+ if self.destroyed then return nil end
+ love.graphics.setColor(1, 1, 0, 1)
+ love.graphics.circle('fill', self.x, self.y, 2)
+ love.graphics.setColor(1, 1, 1, 1)
+ end,
+ -- destroy script
+ destroy = function(self)
+ self.destroyed = true -- a 'fake' destroy, it's still in the list!
+ end
+}
+-- player class
+local player = {
+ new = function(self, x, y, angle)
+ local obj = {
+ x = x,
+ y = y,
+ angle = math.rad(angle),
+ speed = 150,
+ hp = 100,
+ collided = false,
+ spr = love.graphics.newCanvas(16, 16),
+ type = 'player'
+ }
+ -- @TEMP 
+ -- this is just to draw a 'fake' sprite instead of using a texture+quad
+ love.graphics.setCanvas(obj.spr)
+ love.graphics.polygon('fill', 0,0, 16,8, 0,16)
+ love.graphics.setCanvas()
+ -- @TEMP
+ setmetatable(obj, self)
+ self.__index = self
+ table.insert(all_objects, obj)
+ return obj
+ end,
+ -- update script
+ update = function(self, dt)
+ local speed = 0
+ -- a + d to change angle, w + s to move forward + backward
+ if love.keyboard.isDown('a') then self.angle = self.angle + (-3 * dt) end
+ if love.keyboard.isDown('d') then self.angle = self.angle + (3 * dt) end
+ if love.keyboard.isDown('w') then speed = self.speed * dt end
+ -- reuse the helper scripts
+ self.x = helper.calculateVX(self.x, self.angle, speed)
+ self.y = helper.calculateVY(self.y, self.angle, speed)
+ -- see if we hit something!
+ self.collided = helper.checkCollision(self, 'asteroid') ~= nil
+ end,
+ -- draw script
+ draw = function(self)
+ if self.collided then
+ love.graphics.setColor(1, 0, 0, 1)
+ else
+ love.graphics.setColor(1, 1, 1, 1)
+ end
+ love.graphics.draw(self.spr, self.x, self.y, self.angle, 1, 1, 8, 8)
+ love.graphics.setColor(1, 1, 1, 1)
+ end,
+ -- mousepress
+ mousepressed = function(self)
+ bullet:new(self.x, self.y, self.angle)
+ end
+}
+-- load game
+love.load = function()
+ -- make a player
+ local p = player:new(10, 10, 20)
+ -- make some asteroids
+ for a=1,30 do
+ asteroid:new(love.math.random(0, 800), love.math.random(0, 600))
+ end
+end
+-- love events
+-- for all objects, check if there's an event script defined, then call it if so
+love.update = function(dt)
+ for i=1,#all_objects do
+ if all_objects[i].update then all_objects[i]:update(dt) end
+ end
+end
+love.draw = function()
+ for i=1,#all_objects do
+ if all_objects[i].draw then all_objects[i]:draw() end
+ end
+end
+love.mousepressed = function()
+ for i=1,#all_objects do
+ if all_objects[i].mousepressed then all_objects[i]:mousepressed() end
+ end
+end
+`}, '*');
+});
+</script>
+<h2 id="next-steps" tabindex="-1">Next Steps <a class="anchor" href="#next-steps">#</a></h2>
+<p>Want some homework? Why not try taking this example and expand it further!
+Here's some ideas for you:</p>
+<ul>
+<li>Right now the player just flashes when they get hit, but what about taking damage?</li>
+<li>If the player is taking damage, you should draw a healthbar, and have a gameover screen!</li>
+<li>Maybe add a controller object to handle your gameover screen and displaying a final score/leaderboard?</li>
+<li>You shoot asteroids, they blink out of existence, try making smaller ones appear instead and fly out from the parent</li>
+<li>Destroyed objects are still in our list, you should clean up the list now to let the unused one get removed from memory!</li>
+<li>What about adding a score for shooting asteroids?</li>
+<li>Having this in one big file is a bit messy! Try splitting each class out into it's own <code>.lua</code> file</li>
+<li>Instead of basic shapes, try adding your own texture and quads to give the game some nice sprites!</li>
+<li>Instead of bouncing asteroids off the edge of the boundary, you could teleport them to the opposite side!</li>
+<li>How about adding ammo, and some asteroids drop ammo pickups? Or ammo modifiers? Faster bullets, multi-spread...</li>
+<li>We stop abruptly when we stop holding 'W', how could you handle having the player gradually come to a halt?</li>
+</ul>
+
+
+<footer class="guide-footer">
+  <p></p>
+
+  <p>By:
+  
+      <em>ellraiser</em>
+    
+  </p>
+</footer>
+      </article>
+    </main>
+
+  </body>
+</html>
