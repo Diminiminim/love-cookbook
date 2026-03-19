@@ -68,12 +68,6 @@
       },
     
       {
-        "title": "Coroutines",
-        "url": "/guides/intermediate/coroutines/",
-        "abstract": ""
-      },
-    
-      {
         "title": "Stencil states",
         "url": "/guides/intermediate/stencil-states/",
         "abstract": ""
@@ -292,6 +286,12 @@
       {
         "title": "LÖVE",
         "url": "/guides/installation/love/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Coroutines",
+        "url": "/guides/intermediate/coroutines/",
         "abstract": ""
       },
     

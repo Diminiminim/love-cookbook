@@ -12,20 +12,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coroutines</title>
 <meta name="title" content="Coroutines">
-<meta name="author" content="">
-<meta name="description" content="Not yet written: contribute to this page on GitHub.">
+<meta name="author" content="pippo">
+<meta name="description" content="A coroutine allows you to stop the execution of a function and then resume the execution where you paused. This can be beneficial in a wide variety of scenarios, such as turn based games or animations.">
 <meta name="generator" content="eleventy">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://diminim.github.io/love-cookbook/guides/intermediate/coroutines/">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Coroutines">
-<meta property="og:description" content="Not yet written: contribute to this page on GitHub.">
+<meta property="og:description" content="A coroutine allows you to stop the execution of a function and then resume the execution where you paused. This can be beneficial in a wide variety of scenarios, such as turn based games or animations.">
 <meta property="og:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
 <meta property="og:image:alt" content="LÖVE Cookbook">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:url" content="https://diminim.github.io/love-cookbook/guides/intermediate/coroutines/">
 <meta name="twitter:title" content="Coroutines">
-<meta name="twitter:description" content="Not yet written: contribute to this page on GitHub.">
+<meta name="twitter:description" content="A coroutine allows you to stop the execution of a function and then resume the execution where you paused. This can be beneficial in a wide variety of scenarios, such as turn based games or animations.">
 <meta name="twitter:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
 <meta name="twitter:image:alt" content="LÖVE Cookbook">
 <link rel="canonical" href="https://diminim.github.io/love-cookbook/guides/intermediate/coroutines/">
@@ -143,7 +143,96 @@
   <h1 class="title">Coroutines</h1>
 </header>
 
-<p>Not yet written: contribute to this page on <a href="https://github.com/Diminim/love-cookbook">GitHub</a>.</p>
+<h2 id="coroutine-basics" tabindex="-1">Coroutine Basics <a class="anchor" href="#coroutine-basics">#</a></h2>
+<p>A <strong>coroutine</strong> allows you to stop the execution of a function and then resume the execution where you paused. This can be beneficial in a wide variety of scenarios, such as turn based games or animations.</p>
+<p>We can create a coroutine using the function <strong>coroutine.create</strong>, as shown:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+</code></pre>
+<p>We can then start (or resume) the execution of a coroutine using the function <strong>coroutine.resume</strong>.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "hello!".</span>
+</code></pre>
+<p>A coroutine can be in one of three states: suspended, running, or dead. When we create a coroutine, it starts in the &quot;suspended&quot; state. We can view the state of a coroutine by using the function <strong>coroutine.status</strong>.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>coroutine<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- This will print "suspended".</span>
+</code></pre>
+<p>After we resume our coroutine, it will be in the dead state:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "hello!".</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>coroutine<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- This will print "dead".</span>
+</code></pre>
+<h2 id="the-real-power" tabindex="-1">The Real Power <a class="anchor" href="#the-real-power">#</a></h2>
+<p>The real benefit of coroutines can be found in the function <strong>coroutine.yield</strong>. Calling the coroutine.yield function from inside a coroutine will cause it to suspend it's execution, which can be resumed later.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm first!"</span><span class="token punctuation">)</span>
+  coroutine<span class="token punctuation">.</span><span class="token function">yield</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm second!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "i'm first!".</span>
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "i'm second!".</span>
+</code></pre>
+<p>If we try to resume a dead coroutine, the coroutine.resume function will return <strong>false</strong>, along with an error message.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm first!"</span><span class="token punctuation">)</span>
+  coroutine<span class="token punctuation">.</span><span class="token function">yield</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm second!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "i'm first!".</span>
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span> <span class="token comment">-- This will print "i'm second!".</span>
+
+<span class="token comment">-- This will return false and the string</span>
+<span class="token comment">-- "cannot resume a dead coroutine"</span>
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span>
+</code></pre>
+<p>We can pass parameters to the coroutine when it is resumed, as so:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span>someText<span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span>someText<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+
+<span class="token comment">-- This will print "hello from the other side!".</span>
+coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">,</span> <span class="token string">"hello from the other side!"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Additionally, when executed successfully, coroutine.resume will return the parameters passed to coroutine.yield.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm first!"</span><span class="token punctuation">)</span>
+  coroutine<span class="token punctuation">.</span><span class="token function">yield</span><span class="token punctuation">(</span><span class="token string">"hi from the coroutine!"</span><span class="token punctuation">)</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"i'm second!"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">local</span> myCoroutine <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>myFunction<span class="token punctuation">)</span>
+<span class="token keyword">local</span> yieldedString <span class="token operator">=</span> coroutine<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>myCoroutine<span class="token punctuation">)</span>
+
+<span class="token comment">-- This will print "hi from the coroutine!".</span>
+<span class="token function">print</span><span class="token punctuation">(</span>yieldedString<span class="token punctuation">)</span>
+</code></pre>
 
 
 <footer class="guide-footer">
@@ -151,6 +240,8 @@
 
   <p>By:
   
+      <em>pippo</em>
+    
   </p>
 </footer>
       </article>

@@ -179,11 +179,11 @@
 <span class="token keyword">end</span>
 </code></pre>
 <p>Changing that line to instead pass through <code>image</code> and rerunning the code shows us a lovely picture of a whale instead of an error.</p>
-<iframe class="love-embed" id="love-iframe-366" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-921" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_366 = document.getElementById('love-iframe-366');
-iframe_366.addEventListener('load', function() {
-iframe_366.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_921 = document.getElementById('love-iframe-921');
+iframe_921.addEventListener('load', function() {
+iframe_921.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local image = love.graphics.newImage("assets/whale.png")
 function love.draw()
  love.graphics.draw(image, 100, 100)
@@ -232,11 +232,11 @@ end
 <li><code>main.lua:18: in function 'load'</code> - aha!</li>
 </ul>
 <p>Our <code>make_whale</code> function was called from line 18 in main.lua's load function and that call was the one that directly led to the error being thrown. Looking back at our code we can see that line 18 looks a little different from the others with a typo: <code>make_whale(imaeg)</code> should be <code>make_whale(image)</code>!</p>
-<iframe class="love-embed" id="love-iframe-791" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-647" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_791 = document.getElementById('love-iframe-791');
-iframe_791.addEventListener('load', function() {
-iframe_791.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_647 = document.getElementById('love-iframe-647');
+iframe_647.addEventListener('load', function() {
+iframe_647.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local image = love.graphics.newImage("assets/whale.png")
 local whales = {}
 local function make_whale(sprite)
