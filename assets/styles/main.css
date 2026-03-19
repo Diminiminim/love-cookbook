@@ -226,6 +226,7 @@ main {
 .guide img {
   border-radius: .5rem;
   border: var(--color-faded-1) .1rem solid;
+  max-width: 100%;
 }
 
 .guide a {
