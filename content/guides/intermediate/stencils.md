@@ -408,7 +408,7 @@ love.graphics.setColorMask() -- restore mask state (optional)
 
 The texture and pentagon are in the same positions as before. What will this new `setStencilState` result look like?
 
-![](assets/img/stencils/stencil_state.png)
+![](/assets/img/stencils/stencil_state.png)
 
 We see that a pentagonal slice has been cut out of our texture. This is expected. We reset the stencil buffer to `0` everywhere using `love.graphics.clear`, then overwrote the pentagonal area of the stencil buffer to `123`. When drawing the texture, we told LÖVE to **only draw where the buffer is not equal to `123`**. Since the buffer is `0` everywhere else, only the pentagonal area of the texture was excluded from being drawn.
 
