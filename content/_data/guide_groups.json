@@ -59,8 +59,7 @@
             "/guides/basic/tiles/",
             "/guides/basic/animation/",
             "/guides/basic/saving-and-loading/",
-            "/guides/basic/canvases/",
-            "/guides/basic/stencil-modes/"
+            "/guides/basic/canvases/"
         ]
     },
     {
@@ -68,7 +67,7 @@
         "guide_urls": [
             "/guides/intermediate/oop/",
             "/guides/intermediate/collision-resolving/",
-            "/guides/intermediate/stencil-states/",
+            "/guides/intermediate/stencils/",
             "/guides/intermediate/coroutines/",
             "/guides/intermediate/shaders/",
             "/guides/intermediate/compute-shaders/",
