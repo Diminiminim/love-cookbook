@@ -102,12 +102,11 @@
                   </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
-                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
                   </li></ul>
 
             </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="active" href="/love-cookbook/guides/advanced/oop/">OOP</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
-                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencils/">Stencils</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
                   </li></ul>
@@ -741,11 +740,11 @@ love<span class="token punctuation">.</span>mousepressed <span class="token oper
 </code></pre>
 <p>Try it out below!<br>
 Use &quot;W&quot; to move forward, &quot;A&quot; + &quot;D&quot; to turn left and right, and then click to fire. Pew pew!</p>
-<iframe class="love-embed" id="love-iframe-181" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-249" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_181 = document.getElementById('love-iframe-181');
-iframe_181.addEventListener('load', function() {
-iframe_181.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_249 = document.getElementById('love-iframe-249');
+iframe_249.addEventListener('load', function() {
+iframe_249.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- a list of objects to easily iterate over all objects
 local all_objects = {}
 -- helper/utility 'module'

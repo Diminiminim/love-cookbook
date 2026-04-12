@@ -102,12 +102,11 @@
                   </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
-                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
                   </li></ul>
 
             </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/advanced/oop/">OOP</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
-                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencils/">Stencils</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
                   </li></ul>
@@ -287,11 +286,11 @@ my_object_table<span class="token punctuation">.</span>dot <span class="token op
     table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>rectangleList<span class="token punctuation">,</span> <span class="token function">createRectangle</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">end</span>
 </code></pre>
-<iframe class="love-embed" id="love-iframe-234" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-975" src="/love-cookbook/assets/love/love-js" width="800" height="200"></iframe>
 <script>
-const iframe_234 = document.getElementById('love-iframe-234');
-iframe_234.addEventListener('load', function() {
-iframe_234.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
+const iframe_975 = document.getElementById('love-iframe-975');
+iframe_975.addEventListener('load', function() {
+iframe_975.contentWindow.postMessage({lua: `love.window.setMode(800, 200) 
 -- We declare the local variable rectangles, and assign a table as its value.
 local rectangleList = {}
 -- We create the function createRectangle.

@@ -26,6 +26,12 @@
       },
     
       {
+        "title": "Stencils",
+        "url": "/guides/advanced/stencils/",
+        "abstract": ""
+      },
+    
+      {
         "title": "Threads",
         "url": "/guides/advanced/threads/",
         "abstract": ""
@@ -52,12 +58,6 @@
       {
         "title": "Saving &amp; loading",
         "url": "/guides/basic/saving-and-loading/",
-        "abstract": ""
-      },
-    
-      {
-        "title": "Stencil modes",
-        "url": "/guides/basic/stencil-modes/",
         "abstract": ""
       },
     

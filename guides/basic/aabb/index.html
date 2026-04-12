@@ -102,12 +102,11 @@
                   </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
                   </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
-                  </li><li><a class="" href="/love-cookbook/guides/basic/stencil-modes/">Stencil modes</a>
                   </li></ul>
 
             </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/advanced/oop/">OOP</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
-                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencil-states/">Stencil states</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/stencils/">Stencils</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
                   </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
                   </li></ul>
@@ -176,11 +175,11 @@ love<span class="token punctuation">.</span>draw <span class="token operator">=<
 <span class="token keyword">end</span>
 </code></pre>
 <p>If you ran the code above you'd see the the following:</p>
-<iframe class="love-embed" id="love-iframe-860" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-567" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_860 = document.getElementById('love-iframe-860');
-iframe_860.addEventListener('load', function() {
-iframe_860.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_567 = document.getElementById('love-iframe-567');
+iframe_567.addEventListener('load', function() {
+iframe_567.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local button = {
  x = 10,
  y = 20,
@@ -321,11 +320,11 @@ If we add some additional code like:</p>
 <span class="token keyword">end</span>
 </code></pre>
 <p>Then anytime we click the button it'll move! You can try it out below:</p>
-<iframe class="love-embed" id="love-iframe-317" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-87" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_317 = document.getElementById('love-iframe-317');
-iframe_317.addEventListener('load', function() {
-iframe_317.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_87 = document.getElementById('love-iframe-87');
+iframe_87.addEventListener('load', function() {
+iframe_87.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- button 'object'
 local button = { 
  x = 10, y = 20, w = 100, h = 32,
@@ -501,11 +500,11 @@ love<span class="token punctuation">.</span>keypressed <span class="token operat
 </code></pre>
 <p>You can try it out below! Press 'Space' to re-create the boxes in new positions.<br>
 Any boxes that overlap will be rendered in pink - the bounding box lines are also drawn to make things clearer.</p>
-<iframe class="love-embed" id="love-iframe-354" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-198" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_354 = document.getElementById('love-iframe-354');
-iframe_354.addEventListener('load', function() {
-iframe_354.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_198 = document.getElementById('love-iframe-198');
+iframe_198.addEventListener('load', function() {
+iframe_198.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- check overlapping
 function overlapping(b1, b2)
  return b1.x1 < b2.x2 and b1.x2 > b2.x1 and b1.y1 < b2.y2 and b1.y2 > b2.y1
@@ -644,11 +643,11 @@ love<span class="token punctuation">.</span>draw <span class="token operator">=<
 <span class="token keyword">end</span>
 </code></pre>
 <p>You can try it out below here:</p>
-<iframe class="love-embed" id="love-iframe-259" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-918" src="/love-cookbook/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_259 = document.getElementById('love-iframe-259');
-iframe_259.addEventListener('load', function() {
-iframe_259.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_918 = document.getElementById('love-iframe-918');
+iframe_918.addEventListener('load', function() {
+iframe_918.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- check overlapping
 function overlapping(b1, b2)
  return b1.x1 < b2.x2 and b1.x2 > b2.x1 and b1.y1 < b2.y2 and b1.y2 > b2.y1

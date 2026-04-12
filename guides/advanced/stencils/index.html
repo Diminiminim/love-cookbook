@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LÖVE Cookbook | Stencils</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stencils</title>
+<meta name="title" content="Stencils">
+<meta name="author" content="clemapfel">
+<meta name="description" content="This guide is made for LÖVE 12.0! These stencil functions are not available in prior versions.">
+<meta name="generator" content="eleventy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diminim.github.io/love-cookbook/guides/advanced/stencils/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Stencils">
+<meta property="og:description" content="This guide is made for LÖVE 12.0! These stencil functions are not available in prior versions.">
+<meta property="og:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta property="og:image:alt" content="LÖVE Cookbook">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://diminim.github.io/love-cookbook/guides/advanced/stencils/">
+<meta name="twitter:title" content="Stencils">
+<meta name="twitter:description" content="This guide is made for LÖVE 12.0! These stencil functions are not available in prior versions.">
+<meta name="twitter:image" content="https://diminim.github.io/love-cookbook/assets/logo.png">
+<meta name="twitter:image:alt" content="LÖVE Cookbook">
+<link rel="canonical" href="https://diminim.github.io/love-cookbook/guides/advanced/stencils/">
+
+    <script src="/love-cookbook/assets/js/codeblock.js"></script>
+    <script src="/love-cookbook/assets/js/hover_preview.js"></script>
+    <script src="/love-cookbook/assets/js/mobile.js"></script>
+
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/main.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/prism.css">
+    <link rel="stylesheet" href="/love-cookbook/assets/styles/markdown.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" rel="stylesheet">
+  </head>
+  <body>
+    <div class="sidebar">
+      <header>
+        <a href="/love-cookbook/">
+            <div class="logo">
+                <img class="logo-unhover-img" src="/love-cookbook/assets/logo.png">
+                <img class="logo-hover-img" src="/love-cookbook/assets/logo_hover.png">
+            </div>
+
+            <h1>LÖVE Cookbook</h1>
+        </a>
+      </header>
+
+      <nav class="table-of-contents">
+        <ul class="chapters"><li class="group-header">Installation<ul class="guides"><li><a class="" href="/love-cookbook/guides/installation/getting-started/">Getting started</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/love/">LÖVE</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/vscode/">VSCode</a>
+                  </li><li><a class="" href="/love-cookbook/guides/installation/neovim/">Neovim</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Basics<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-basics/lua/">Lua</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/variables/">Variables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/functions/">Functions</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/if-statements/">If-statements</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/tables/">Tables and for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/gotchas/">Gotchas</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-basics/recap/">Recap</a>
+                  </li></ul>
+
+            </li><li class="group-header">Lua Advanced<ul class="guides"><li><a class="" href="/love-cookbook/guides/lua-advanced/require/">Require</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/scope/">Scope</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/modulo/">Modulo</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/nested-for-loops/">Nested for-loops</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/standard-library/">Standard library</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/string-patterns/">String patterns</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/ternary-operators/">Ternary operators</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/metatables/">Metatables</a>
+                  </li><li><a class="" href="/love-cookbook/guides/lua-advanced/coroutines/">Coroutines</a>
+                  </li></ul>
+
+            </li><li class="group-header">LÖVE Introduction<ul class="guides"><li><a class="" href="/love-cookbook/guides/love/drawing-image/">Drawing an image</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-shapes/">Drawing shapes</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/drawing-text/">Drawing text</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/playing-audio/">Playing audio</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/input/">Input</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/filesystem/">Filesystem</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/deltatime/">Deltatime</a>
+                  </li><li><a class="" href="/love-cookbook/guides/love/reading-errors/">Reading errors</a>
+                  </li></ul>
+
+            </li><li class="group-header">Basic Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/basic/aabb/">AABB</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/angle-and-distance/">Angle &amp; distance</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/tiles/">Tiles</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/animation/">Animation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/saving-and-loading/">Saving &amp; loading</a>
+                  </li><li><a class="" href="/love-cookbook/guides/basic/canvases/">Canvases</a>
+                  </li></ul>
+
+            </li><li class="group-header">Advanced Concepts<ul class="guides"><li><a class="" href="/love-cookbook/guides/advanced/oop/">OOP</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/collision-resolving/">Collision resolution</a>
+                  </li><li><a class="active" href="/love-cookbook/guides/advanced/stencils/">Stencils</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/physics/">Physics</a>
+                  </li><li><a class="" href="/love-cookbook/guides/advanced/threads/">Threads</a>
+                  </li></ul>
+
+            </li><li class="group-header">Shaders<ul class="guides"><li><a class="" href="/love-cookbook/guides/shaders/introduction/">Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/compute-shaders/">Compute Shaders</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/box-blur/">Box Blur</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/outlines/">Outlines</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/palette/">Palette</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/pixelation/">Pixelation</a>
+                  </li><li><a class="" href="/love-cookbook/guides/shaders/vertex-shaders/">Vertex Shaders</a>
+                  </li></ul>
+
+            </li><li class="group-header">Exporting<ul class="guides"><li><a class="" href="/love-cookbook/guides/exporting/distribution/">Distribution</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/web-export/">Web Export</a>
+                  </li><li><a class="" href="/love-cookbook/guides/exporting/build-tools/">Build Tools</a>
+                  </li></ul>
+
+            </li><li class="group-header">Recipes<ul class="guides"><li><a class="" href="/love-cookbook/guides/recipes/screen-resizing/">Screen resizing</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/steam/">Steam</a>
+                  </li><li><a class="" href="/love-cookbook/guides/recipes/modding/">Modding</a>
+                  </li></ul>
+
+            </li></ul>
+
+      </nav>
+    </div>
+
+    <main>
+      <article class="guide">
+        
+<header class="guide-header">
+  <button type="button" class="menu-button">
+    <i class="material-symbols-outlined">menu</i>
+  </button>
+
+  <h1 class="title">Stencils</h1>
+</header>
+
+<h1 id="stencils" tabindex="-1">Stencils <a class="anchor" href="#stencils">#</a></h1>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>This guide is made for LÖVE 12.0! These stencil functions are not available in prior versions.</p>
+</div>
+<p>This chapter will go over <strong>stencils</strong>, which open up a number of advanced drawing techniques. Stencils allow us to only draw (or not draw) certain parts of a shape or texture to the window or active canvas. Similar to real-world stencils, they let us &quot;cut out&quot; only parts of an image, an effect that would be very hard to achieve otherwise.</p>
+<h1 id="0.-tl%3Bdr%3A-quick-start" tabindex="-1">0. TL;DR: Quick Start <a class="anchor" href="#0.-tl%3Bdr%3A-quick-start">#</a></h1>
+<p>For those without enough time to read this entire chapter, or people returning for reference purposes, below are example usages of the stencil-related functions in LÖVE 12.</p>
+<p><strong>It is expected that first-time readers will not understand what is going on in these examples</strong>, as the rest of this chapter will build the knowledge needed to fully understand them.</p>
+<h2 id="0.1-setstencilmode-example" tabindex="-1">0.1 <code>setStencilMode</code> Example <a class="anchor" href="#0.1-setstencilmode-example">#</a></h2>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- choose a stencil value</span>
+<span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+<span class="token comment">-- start writing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"draw"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- set every pixel touched by this command to `123`</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">-- x position of the circle</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">-- y position</span>
+  <span class="token number">0.25</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- radius</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- enable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- draw a rectangle with stencil testing enabled</span>
+<span class="token keyword">local</span> margin <span class="token operator">=</span> <span class="token number">10</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">rectangle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  margin<span class="token punctuation">,</span> <span class="token comment">-- x position</span>
+  margin<span class="token punctuation">,</span> <span class="token comment">-- y position</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> margin<span class="token punctuation">,</span> <span class="token comment">-- width</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> margin <span class="token comment">-- height</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- disable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"off"</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="0.2-setstencilstate-example" tabindex="-1">0.2 <code>setStencilState</code> Example <a class="anchor" href="#0.2-setstencilstate-example">#</a></h2>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- choose a stencil value</span>
+<span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+<span class="token comment">-- make it so we are now drawing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token string">"always"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- set every pixel touched by this command to `123`</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">-- x position of the circle</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">-- y position</span>
+  <span class="token number">0.25</span> <span class="token operator">*</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- radius</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- make it so we are now testing against the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"keep"</span><span class="token punctuation">,</span> <span class="token string">"notequal"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- draw a rectangle with stencil testing enabled</span>
+<span class="token keyword">local</span> margin <span class="token operator">=</span> <span class="token number">10</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">rectangle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  margin<span class="token punctuation">,</span> <span class="token comment">-- x position</span>
+  margin<span class="token punctuation">,</span> <span class="token comment">-- y position</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> margin<span class="token punctuation">,</span> <span class="token comment">-- width</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> margin <span class="token comment">-- height</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- disable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"keep"</span><span class="token punctuation">,</span> <span class="token string">"always"</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="0.3-clearing-the-stencil-buffer" tabindex="-1">0.3 Clearing the Stencil Buffer <a class="anchor" href="#0.3-clearing-the-stencil-buffer">#</a></h2>
+<pre><code class="language-lua"><span data-attrs=""></span>love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>
+  <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token comment">-- do not clear color</span>
+  <span class="token keyword">true</span><span class="token punctuation">,</span>  <span class="token comment">-- clear stencil buffer</span>
+  <span class="token keyword">false</span>  <span class="token comment">-- do not clear depth buffer</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="0.4-binding-a-canvas-with-stencils-active" tabindex="-1">0.4 Binding a Canvas with Stencils Active <a class="anchor" href="#0.4-binding-a-canvas-with-stencils-active">#</a></h2>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- create a canvas</span>
+<span class="token keyword">local</span> canvas <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newTexture</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  canvas <span class="token operator">=</span> <span class="token keyword">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- bind the canvas with stenciling enabled</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setCanvas</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  canvas<span class="token punctuation">,</span>
+  stencil <span class="token operator">=</span> <span class="token keyword">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- draw here, stencils will work as expected</span>
+
+<span class="token comment">-- unbind the canvas</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setCanvas</span><span class="token punctuation">(</span><span class="token keyword">nil</span><span class="token punctuation">)</span>
+</code></pre>
+<p>For those still with us, let's begin our exploration of stencils.</p>
+<h2 id="1.-stencil-buffer" tabindex="-1">1. Stencil Buffer <a class="anchor" href="#1.-stencil-buffer">#</a></h2>
+<p>The main window (or currently bound canvas) will have what is called a <strong>stencil buffer</strong>. This is a special kind of texture that holds, on the graphics card, an unsigned integer value in <code>[0, 255)</code> for every pixel. Writing to the stencil buffer works the same as with the window or any canvas; when a draw command such as <code>love.graphics.draw</code> or <code>love.graphics.circle</code> is called, the object drawn will modify every pixel it touches. For normal textures and the main window, this modifies the RGBA values and thus the color of that pixel, for this reason it is also sometimes called a <strong>color buffer</strong>. <strong>Stencil buffers</strong> work the same way: we draw using a regular draw command, and any pixel touched will have a new value written to it. Instead of a color, it is the above-mentioned unsigned integer.</p>
+<h2 id="2.-stencil-compare-modes-%26-culling" tabindex="-1">2. Stencil Compare Modes &amp; Culling <a class="anchor" href="#2.-stencil-compare-modes-%26-culling">#</a></h2>
+<p>The main use for stencils is controlling whether or not a draw command (such as <code>love.graphics.draw</code> or <code>love.graphics.circle</code>) will <strong>actually modify the current window or canvas</strong>. Internally, LÖVE keeps a global value which is called the <strong>stencil compare mode</strong>. When a pixel is drawn, LÖVE will compare the value of the stencil buffer at that position using this compare mode, and if this operation returns true, the pixel will be drawn to. If it returns false, <strong>the pixel will not be modified</strong> - the window or canvas will <strong>not</strong> have its color at that position changed. This is why stencils are very powerful: much like a real-life stencil, they allow us to cut out certain parts of a drawable object, preventing only that part from being drawn, without the use of any additional geometry.</p>
+<p>In LÖVE 12, there are two kinds of stencil-related API functions. <code>setStencilMode</code> is the more user-friendly option; it is great for simple operations. For more advanced applications, the much more complex <code>setStencilState</code> is available.</p>
+<h2 id="3.-setstencilmode" tabindex="-1">3. <code>setStencilMode</code> <a class="anchor" href="#3.-setstencilmode">#</a></h2>
+<p>For now, we'll focus on <code>setStencilMode</code>. This function has the following signature:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">--- @param mode love.graphics.StencilMode mode</span>
+<span class="token comment">--- @param value number stencil value</span>
+<span class="token comment">--- @return nil</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span>mode<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+</code></pre>
+<p><code>mode</code> is of type <code>love.graphics.StencilMode</code>, which is an enum with the following values:</p>
+<ul>
+<li><code>&quot;off&quot;</code> - disable stenciling</li>
+<li><code>&quot;draw&quot;</code> - enable drawing to the stencil buffer</li>
+<li><code>&quot;test&quot;</code> - enable testing against the stencil buffer</li>
+</ul>
+<p>If no mode is specified, the argument will default to <code>&quot;off&quot;</code>.</p>
+<p><code>v</code> is an unsigned integer in <code>[0, 255)</code>. If a float is given, it will be rounded down to the nearest integer. We need to make sure ourselves to <strong>not specify values outside this range</strong>, as setting the stencil value to, for example, <code>2045.23</code> will not cause an error - what exact value will be drawn to the stencil buffer in this case is deterministic but logically opaque and should thus be avoided.</p>
+<h3 id="3.1-usage" tabindex="-1">3.1 Usage <a class="anchor" href="#3.1-usage">#</a></h3>
+<p>Usage of <code>setStencilMode</code> will often follow this pattern:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- (1) choose a stencil value in [0, 255]</span>
+<span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+<span class="token comment">-- (2) enable drawing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"draw"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- any draw code here, e.g. love.graphics.draw, love.graphics.circle, etc.</span>
+
+<span class="token comment">-- (3) enable testing against the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- more draw code here</span>
+
+<span class="token comment">-- (4) disable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"off"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Let's go through each of these lines step by step. Since we have no way to visualize the stencil buffer, it is vital to understand exactly how drawing works in this context.</p>
+<h4 id="3.1.1-choosing-a-stencil-value-(1)" tabindex="-1">3.1.1 Choosing a Stencil Value (1) <a class="anchor" href="#3.1.1-choosing-a-stencil-value-(1)">#</a></h4>
+<p>First we need to choose what value subsequent modifications to the stencil buffer will write. Here we arbitrarily chose <code>123</code>, which is an integer in the valid range <code>[0, 255]</code>. While we could simply not choose a stencil value and use the default <code>0</code>, once we start using stencils more frequently, <strong>different usages will affect each other</strong>, since they all modify the same buffer and the buffer state is maintained within the same frame unless manually cleared. Because of this, <strong>each section should ideally have its own stencil value</strong>, as this minimizes side effects.</p>
+<h4 id="3.1.2-enabling-stencil-draw-(2)" tabindex="-1">3.1.2 Enabling Stencil Draw (2) <a class="anchor" href="#3.1.2-enabling-stencil-draw-(2)">#</a></h4>
+<p>With <code>setStencilMode(&quot;draw&quot;)</code>, we are telling LÖVE that from now on, all draws will only affect the stencil buffer. This also means they <strong>will no longer modify the current canvas or window</strong>. Any draw command will only touch the stencil buffer, meaning they will be invisible when viewing the window. For every subsequent draw, until we change the stencil mode, we are now <strong>writing the value <code>stencilValue</code> to every pixel touched by our draw commands</strong>. Note that &quot;touching&quot; a pixel means any kind of modification - for example, when drawing a texture, every pixel touched by the texture will be overwritten, regardless of the texture's alpha value or blend mode. For this reason, it's best to stick to drawing simple shapes using <code>love.graphics</code>, or using meshes.</p>
+<h4 id="3.1.3-enabling-stencil-testing-(3)" tabindex="-1">3.1.3 Enabling Stencil Testing (3) <a class="anchor" href="#3.1.3-enabling-stencil-testing-(3)">#</a></h4>
+<p>Now that we have modified the stencil buffer, we can tell LÖVE to enter the <strong>compare phase</strong>, which we mentioned earlier. From this point onwards, LÖVE will perform the following calculation: for a pixel at <code>(x, y)</code>, get the current stencil value at <code>(x, y)</code> from the stencil buffer. <strong>If this value equals <code>stencilValue</code>, perform the draw as usual; otherwise, discard it</strong>. This is true for every pixel on the screen, not just the ones we wrote to earlier.</p>
+<h4 id="3.1.4-disabling-stencil-testing-(4)" tabindex="-1">3.1.4 Disabling Stencil Testing (4) <a class="anchor" href="#3.1.4-disabling-stencil-testing-(4)">#</a></h4>
+<p>After drawing with stencil testing enabled is done, we need to manually disable stencil testing. To do this, we simply call <code>love.graphics.setStencilMode(&quot;off&quot;)</code>.</p>
+<h3 id="3.2-a-working-example" tabindex="-1">3.2 A Working Example <a class="anchor" href="#3.2-a-working-example">#</a></h3>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- set background color</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> texture <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newTexture</span><span class="token punctuation">(</span><span class="token string">"toast.png"</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> textureWidth<span class="token punctuation">,</span> textureHeight <span class="token operator">=</span> texture<span class="token punctuation">:</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- choose a stencil value</span>
+<span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+<span class="token comment">-- make the entire stencil buffer 0</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>
+  <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token comment">-- do not clear color</span>
+  <span class="token keyword">true</span>   <span class="token comment">-- clear stencil</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- start writing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"draw"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- set every pixel's stencil value touched by this command to `123`</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> w<span class="token punctuation">,</span>  <span class="token comment">-- x position of the circle</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> h<span class="token punctuation">,</span>  <span class="token comment">-- y position</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> textureWidth<span class="token punctuation">,</span>  <span class="token comment">-- radius</span>
+  <span class="token number">5</span> <span class="token comment">-- number of outer vertices</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- enable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+
+<span class="token comment">-- draw the texture</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>texture<span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> w <span class="token operator">-</span> <span class="token number">0.5</span> <span class="token operator">*</span> texture<span class="token punctuation">:</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">-- x position of texture</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> h <span class="token operator">-</span> <span class="token number">0.5</span> <span class="token operator">*</span> texture<span class="token punctuation">:</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- y position</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- disable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilMode</span><span class="token punctuation">(</span><span class="token string">"off"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Here, we set the stencil buffer in a pentagonal region (a region shaped like a 5-sided regular polygon) to <code>stencilValue</code> (<code>123</code> in this case), then draw a texture at the same position with stencil testing enabled.</p>
+<p>First let's draw just the texture. This is what it looks like with no stencils applied:</p>
+<p><img src="/love-cookbook/assets/img/stencil_mode_texture_only.png" alt=""></p>
+<p>This is what the <code>love.graphics.circle</code> call looks like if we render it to the window, again with no stencils applied:</p>
+<p><img src="/love-cookbook/assets/img/stencils/stencil_mode_shape_only.png" alt=""></p>
+<p>We now apply the stencil as shown above. What will the result look like?</p>
+<p><img src="/love-cookbook/assets/img/stencils/stencil_mode.png" alt=""></p>
+<p>We see that only the center part of the texture was drawn; parts outside that pentagon were discarded. We only see the pentagonal part because when testing using <code>setStencilMode</code>, only pixels for which the stencil buffer has a value <strong>equal</strong> to <code>stencilValue</code> will be updated. The stencil buffer was reset to <code>0</code>, we updated the value in the pentagonal area to <code>123</code>, then told LÖVE to only draw pixels where the stencil buffer is equal to <code>123</code>. Therefore, only where the pentagonal shape was drawn will parts of the texture be drawn as well.</p>
+<p>This is a powerful result; drawing a texture clipped to a pentagon like this could otherwise only be achieved with a <code>Mesh</code> or a <code>Shader</code>. If we use geometry more complex than a simple pentagon, it becomes almost infeasible to only draw parts of the texture that overlap that geometry.</p>
+<h3 id="4.-setstencilstate" tabindex="-1">4. <code>setStencilState</code> <a class="anchor" href="#4.-setstencilstate">#</a></h3>
+<p>While <code>setStencilMode</code> is easy to use and somewhat easy to understand, it has the following limitations:</p>
+<ul>
+<li>i) we can only overwrite the stencil value at a certain position, not perform any other kind of calculation on it</li>
+<li>ii) when drawing with testing active, only regions for which the stencil value is <strong>equal</strong> to our value will be drawn; no other comparison is supported</li>
+<li>iii) we can only draw to either the stencil buffer or the window, not both</li>
+</ul>
+<p><code>setStencilState</code> lifts all of these restrictions - at the cost of a much more complicated API. It is therefore a more advanced part of LÖVE, which we will try to make accessible in this chapter.</p>
+<h4 id="4.1-signature" tabindex="-1">4.1 Signature <a class="anchor" href="#4.1-signature">#</a></h4>
+<p><code>setStencilState</code> has the following signature:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">--- @param action love.graphics.StencilAction how the stencil buffer will be modified</span>
+<span class="token comment">--- @param compareMode love.graphics.StencilCompareMode when testing, which equation will be used</span>
+<span class="token comment">--- @param value number stencil value</span>
+<span class="token comment">--- @return nil</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+  action<span class="token punctuation">,</span>
+  compareMode<span class="token punctuation">,</span>
+  value
+<span class="token punctuation">)</span>
+</code></pre>
+<p>Let's also quickly look at a seemingly unrelated function, which will become important soon:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">--- @param red boolean whether to render red component</span>
+<span class="token comment">--- @param green boolean whether to render green component</span>
+<span class="token comment">--- @param blue boolean whether to render blue component</span>
+<span class="token comment">--- @param alpha boolean whether to render alpha component</span>
+<span class="token comment">--- @return nil</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span>
+  red<span class="token punctuation">,</span>
+  green<span class="token punctuation">,</span>
+  blue<span class="token punctuation">,</span>
+  alpha
+<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="4.1-stencil-action" tabindex="-1">4.1 Stencil Action <a class="anchor" href="#4.1-stencil-action">#</a></h4>
+<p><code>action</code>, the first argument of <code>setStencilState</code>, takes a value of the enum <code>love.graphics.StencilAction</code>. This argument governs <strong>how the stencil buffer will be modified when we perform a draw action</strong>. Remember that <strong>only pixels touched by the draw command will have their corresponding stencil buffer value modified</strong>.</p>
+<p>It can have one of the following values, where <code>current</code> is the value currently in the stencil buffer at the given position, <code>v</code> is the value given as the third argument to <code>setStencilState</code>, and <code>new</code> is the value the stencil buffer will have after modification.</p>
+<table>
+<thead>
+<tr>
+<th>StencilAction</th>
+<th>Behavior</th>
+<th>Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;keep&quot;</code></td>
+<td>do not modify the stencil buffer</td>
+<td><code>new = current</code></td>
+</tr>
+<tr>
+<td><code>&quot;zero&quot;</code></td>
+<td>replace the stencil buffer value with <code>0</code></td>
+<td><code>new = 0</code></td>
+</tr>
+<tr>
+<td><code>&quot;replace&quot;</code></td>
+<td>replace the stencil buffer value with <code>v</code></td>
+<td><code>new = v</code></td>
+</tr>
+<tr>
+<td><code>&quot;increment&quot;</code></td>
+<td>add <code>v</code> to the stencil buffer value; if the new value would exceed <code>255</code>, clamp it to <code>255</code></td>
+<td><code>new = min(current + v, 255)</code></td>
+</tr>
+<tr>
+<td><code>&quot;decrement&quot;</code></td>
+<td>subtract <code>v</code> from the stencil buffer value; if the new value would be below <code>0</code>, clamp it to <code>0</code></td>
+<td><code>new = max(current - v, 0)</code></td>
+</tr>
+<tr>
+<td><code>&quot;incrementwrap&quot;</code></td>
+<td>add <code>v</code> to the stencil buffer value; if the new value would exceed <code>255</code>, wrap it back into <code>[0, 255)</code></td>
+<td><code>new = mod(current + v, 255)</code>*</td>
+</tr>
+<tr>
+<td><code>&quot;decrementwrap&quot;</code></td>
+<td>subtract <code>v</code> from the stencil buffer value; if the new value would be below <code>0</code>, wrap it back into <code>[0, 255)</code></td>
+<td><code>new = mod(current - v, 255)</code>*</td>
+</tr>
+<tr>
+<td><code>&quot;invert&quot;</code></td>
+<td>perform a bitwise <code>not</code> operation on the current value</td>
+<td><code>new = bnot(current)</code>**</td>
+</tr>
+</tbody>
+</table>
+<p>* where <code>mod(a, b)</code> returns the modulo of <code>a</code> with <code>b</code>, equivalent to <code>a % b</code> in LuaJIT</p>
+<p>** where <code>bnot(a)</code> returns the bitwise negation of <code>a</code>, equivalent to <code>bit.bnot(a)</code> in LuaJIT</p>
+<p>With these actions, we have a breadth of ways to change how exactly the stencil buffer will be modified. Attentive readers may have noticed that <code>setStencilMode(&quot;draw&quot;)</code> internally sets the stencil action to <code>&quot;replace&quot;</code>, since any pixel touched by the draw command will have its value overridden.</p>
+<h3 id="4.2-stencilcomparemode" tabindex="-1">4.2 <code>StencilCompareMode</code> <a class="anchor" href="#4.2-stencilcomparemode">#</a></h3>
+<p>The second argument of <code>setStencilState</code> governs what formula is used <strong>to determine whether to draw or discard a pixel depending on the stencil buffer value</strong> at that position. Recall that for <code>setStencilMode</code>, only pixels for which the stencil buffer value was <strong>equal to</strong> the second argument of <code>setStencilMode</code> will be drawn. <code>setStencilState</code> gives us more options than just equality, where, again, <code>current</code> is the value currently in the stencil buffer at the pixel's position and <code>v</code> is the third argument given to <code>setStencilState</code>:</p>
+<table>
+<thead>
+<tr>
+<th>StencilCompareMode</th>
+<th>Behavior</th>
+<th>Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;always&quot;</code></td>
+<td>always drawn</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>&quot;never&quot;</code></td>
+<td>never drawn</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>&quot;equal&quot;</code></td>
+<td>drawn if stencil buffer value equals <code>v</code></td>
+<td><code>current == v</code></td>
+</tr>
+<tr>
+<td><code>&quot;notequal&quot;</code></td>
+<td>drawn if stencil buffer value does not equal <code>v</code></td>
+<td><code>current ~= v</code></td>
+</tr>
+<tr>
+<td><code>&quot;less&quot;</code></td>
+<td>drawn if stencil buffer value is strictly less than <code>v</code></td>
+<td><code>current &lt; v</code></td>
+</tr>
+<tr>
+<td><code>&quot;lequal&quot;</code></td>
+<td>drawn if stencil buffer value is less than or equal to <code>v</code></td>
+<td><code>current &lt;= v</code></td>
+</tr>
+<tr>
+<td><code>&quot;greater&quot;</code></td>
+<td>drawn if stencil buffer value is strictly greater than <code>v</code></td>
+<td><code>current &gt; v</code></td>
+</tr>
+<tr>
+<td><code>&quot;gequal&quot;</code></td>
+<td>drawn if stencil buffer value is greater than or equal to <code>v</code></td>
+<td><code>current &gt;= v</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="4.3-setcolormask" tabindex="-1">4.3 <code>setColorMask</code> <a class="anchor" href="#4.3-setcolormask">#</a></h3>
+<p>Lastly, we need a way to control whether we are currently drawing to the screen or the stencil buffer. For this, we use <code>setColorMask</code>. This function takes four booleans which control whether the red, green, blue, and alpha components of the pixel will be affected by subsequent draw calls. Since, when drawing to the stencil buffer, all we need is to not update the color buffer of the window at all, we simply call:</p>
+<pre><code class="language-lua"><span data-attrs=""></span>love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Now, if <code>setStencilState</code> is set, draw calls will only affect the stencil buffer, not the window. To start drawing to the window again, we simply call:</p>
+<pre><code class="language-lua"><span data-attrs=""></span>love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+<span class="token comment">-- equivalent to `love.graphics.setColorMask()`</span>
+</code></pre>
+<p>After which drawing works as normal.</p>
+<h3 id="4.4-a-working-example" tabindex="-1">4.4 A Working Example <a class="anchor" href="#4.4-a-working-example">#</a></h3>
+<p>Let's again use our texture and pentagon from before, except we now want the texture to be drawn everywhere <strong>except where the pentagon is</strong>. This is not possible to achieve with <code>setStencilMode</code>, since it is hardcoded to only use the <code>equal</code> compare mode. Since we do not want to draw where the stencil buffer value is equal, we choose <code>notequal</code> for the stencil compare mode.</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token comment">-- set background color</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> texture <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newTexture</span><span class="token punctuation">(</span><span class="token string">"toast.png"</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> textureWidth<span class="token punctuation">,</span> textureHeight <span class="token operator">=</span> texture<span class="token punctuation">:</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- choose a stencil value</span>
+<span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+<span class="token comment">-- make the entire stencil buffer 0</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>
+  <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token comment">-- do not clear color</span>
+  <span class="token keyword">true</span>   <span class="token comment">-- clear stencil</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- start writing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+  <span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token comment">-- stencil buffer value should be overwritten</span>
+  <span class="token string">"always"</span><span class="token punctuation">,</span>  <span class="token comment">-- do not test against the buffer for now</span>
+  stencilValue
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- stop drawing to the main window's color buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- set every pixel's stencil value touched by this command to `123`</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> w<span class="token punctuation">,</span>  <span class="token comment">-- x position of the circle</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> h<span class="token punctuation">,</span>  <span class="token comment">-- y position</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> textureWidth<span class="token punctuation">,</span>  <span class="token comment">-- radius</span>
+  <span class="token number">5</span> <span class="token comment">-- number of outer vertices</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- enable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+  <span class="token string">"keep"</span><span class="token punctuation">,</span>      <span class="token comment">-- do not modify the stencil buffer</span>
+  <span class="token string">"notequal"</span><span class="token punctuation">,</span>  <span class="token comment">-- draw only where stencil buffer value is `not equal` to `123`</span>
+  stencilValue
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- start drawing to the color buffer again</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- draw the texture</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>texture<span class="token punctuation">,</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> w <span class="token operator">-</span> <span class="token number">0.5</span> <span class="token operator">*</span> texture<span class="token punctuation">:</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">-- x position</span>
+  <span class="token number">0.5</span> <span class="token operator">*</span> h <span class="token operator">-</span> <span class="token number">0.5</span> <span class="token operator">*</span> texture<span class="token punctuation">:</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- y position</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- disable stencil testing</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"keep"</span><span class="token punctuation">,</span> <span class="token string">"always"</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- restore mask state (optional)</span>
+</code></pre>
+<p>The texture and pentagon are in the same positions as before. What will this new <code>setStencilState</code> result look like?</p>
+<p><img src="/love-cookbook/assets/img/stencils/stencil_state.png" alt=""></p>
+<p>We see that a pentagonal slice has been cut out of our texture. This is expected. We reset the stencil buffer to <code>0</code> everywhere using <code>love.graphics.clear</code>, then overwrote the pentagonal area of the stencil buffer to <code>123</code>. When drawing the texture, we told LÖVE to <strong>only draw where the buffer is not equal to <code>123</code></strong>. Since the buffer is <code>0</code> everywhere else, only the pentagonal area of the texture was excluded from being drawn.</p>
+<p>This is a powerful result, as producing the above image using any other technique would be exceedingly complicated.</p>
+<p>While this shows the most basic usage of <code>setStencilState</code>, closing out this chapter of the LÖVE cookbook are some even more advanced techniques.</p>
+<h4 id="4.4.1-drawing-to-the-stencil-buffer-and-window-at-the-same-time" tabindex="-1">4.4.1 Drawing to the Stencil Buffer and Window at the Same Time <a class="anchor" href="#4.4.1-drawing-to-the-stencil-buffer-and-window-at-the-same-time">#</a></h4>
+<pre><code class="language-lua"><span data-attrs=""></span>love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">)</span> <span class="token comment">-- "all" to store stencil-related settings</span>
+
+<span class="token comment">-- start drawing to the stencil buffer</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+  <span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token comment">-- overwrite values in the buffer</span>
+  <span class="token string">"always"</span><span class="token punctuation">,</span>  <span class="token comment">-- disable stencil testing</span>
+  stencilValue
+<span class="token punctuation">)</span>
+
+<span class="token comment">-- also enable color mask</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- draw calls here will affect both the stencil buffer and the window at the same time</span>
+
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">-- restore the previous stencil state</span>
+</code></pre>
+<h4 id="4.4.2-testing-against-the-stencil-buffer-while-drawing-to-it" tabindex="-1">4.4.2 Testing Against the Stencil Buffer While Drawing to It <a class="anchor" href="#4.4.2-testing-against-the-stencil-buffer-while-drawing-to-it">#</a></h4>
+<pre><code class="language-lua"><span data-attrs=""></span>love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">do</span>
+  <span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+  <span class="token comment">-- update the stencil buffer with `123`</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+    <span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token comment">-- overwrite values in the buffer</span>
+    <span class="token string">"always"</span><span class="token punctuation">,</span>  <span class="token comment">-- disable stencil testing</span>
+    stencilValue
+  <span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- draw calls here will write `stencilValue` to stencil buffer</span>
+
+<span class="token keyword">do</span>
+  <span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">124</span>
+
+  <span class="token comment">-- continue updating the stencil buffer, now with `124`</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span>
+    <span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token comment">-- overwrite values in the buffer</span>
+    <span class="token string">"equal"</span><span class="token punctuation">,</span>   <span class="token comment">-- enable stencil testing</span>
+    stencilValue
+  <span class="token punctuation">)</span>
+
+  <span class="token comment">-- draws here will write `124` to the </span>
+  <span class="token comment">-- stencil buffer while simultaneously testing if </span>
+  <span class="token comment">-- the value is equal to `123`</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- restore the graphics state</span>
+love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Where the <code>do</code>-<code>end</code> blocks' scoping ensure <code>stencilValue</code> is different in both <code>setStencilState</code> calls.</p>
+<h3 id="5.-example-game" tabindex="-1">5. Example Game <a class="anchor" href="#5.-example-game">#</a></h3>
+<p>Below is a full <code>main.lua</code> for a game of &quot;shoot the target&quot;, with stencils being used to draw the crosshair/spotlight - something that would be very hard to achieve without stencils. Take special note of <code>love.draw</code> at the top of the file, which uses <code>setStencilState</code> as discussed to stencil out the circle from the full black rectangle covering the screen.</p>
+<p><img src="/love-cookbook/assets/img/stencils/shoot_the_target.png" alt=""></p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">local</span> score <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">local</span> field <span class="token operator">=</span> <span class="token keyword">nil</span>
+<span class="token keyword">local</span> reinitializeField<span class="token punctuation">,</span> checkSuccess<span class="token punctuation">,</span> drawFieldBelow<span class="token punctuation">,</span> drawFieldAbove<span class="token punctuation">,</span> updateField
+
+love<span class="token punctuation">.</span>draw <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">drawFieldBelow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">local</span> x<span class="token punctuation">,</span> y <span class="token operator">=</span> love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">getPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> stencilValue <span class="token operator">=</span> <span class="token number">123</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"replace"</span><span class="token punctuation">,</span> <span class="token string">"always"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"keep"</span><span class="token punctuation">,</span> <span class="token string">"notequal"</span><span class="token punctuation">,</span> stencilValue<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">rectangle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setStencilState</span><span class="token punctuation">(</span><span class="token string">"keep"</span><span class="token punctuation">,</span> <span class="token string">"always"</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColorMask</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
+
+  <span class="token function">drawFieldAbove</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+love<span class="token punctuation">.</span>update <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>delta<span class="token punctuation">)</span>
+  <span class="token function">updateField</span><span class="token punctuation">(</span>delta<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+love<span class="token punctuation">.</span>mousepressed <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span>
+  <span class="token function">checkSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+love<span class="token punctuation">.</span>keypressed <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span>
+  <span class="token function">checkSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+love<span class="token punctuation">.</span>load <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">reinitializeField</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+love<span class="token punctuation">.</span>resize <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+  <span class="token function">reinitializeField</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+reinitializeField <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  field <span class="token operator">=</span> <span class="token punctuation">{</span>
+    circles <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    target <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    crosshair <span class="token operator">=</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      y <span class="token operator">=</span> love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      radius <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      top <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      bottom <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      right <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      left <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    revealElapsed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    revealDuration <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+
+    cooldownElapsed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    cooldownDuration <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+
+    foundMessageX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    foundMessageY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+
+    titleX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    titleY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+
+    scoreX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    scoreY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+
+    font <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getFont</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    elapsed <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">local</span> screenW<span class="token punctuation">,</span> screenH <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getDimensions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> minRadius <span class="token operator">=</span> <span class="token number">7</span>
+  <span class="token keyword">local</span> maxRadius <span class="token operator">=</span> <span class="token number">21</span>
+
+  <span class="token keyword">local</span> spotlightRadius <span class="token operator">=</span> <span class="token number">128</span>
+
+  <span class="token keyword">local</span> targetHue <span class="token operator">=</span> <span class="token number">0.14</span>
+  <span class="token keyword">local</span> minHue <span class="token operator">=</span> <span class="token number">0.45</span>
+  <span class="token keyword">local</span> maxHue <span class="token operator">=</span> <span class="token number">0.85</span>
+
+  <span class="token keyword">local</span> minHomeRadius <span class="token operator">=</span> <span class="token number">40</span>
+  <span class="token keyword">local</span> maxHomeRadius <span class="token operator">=</span> <span class="token number">120</span>
+  <span class="token keyword">local</span> minVelocity <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token keyword">local</span> maxVelocity <span class="token operator">=</span> <span class="token number">20</span>
+
+  <span class="token keyword">local</span> cellSize <span class="token operator">=</span> <span class="token number">64</span>
+  <span class="token keyword">local</span> minPerCell <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token keyword">local</span> maxPerCell <span class="token operator">=</span> <span class="token number">7</span>
+
+  <span class="token keyword">local</span> random <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>lower<span class="token punctuation">,</span> upper<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> ratio <span class="token operator">=</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> lower <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> ratio<span class="token punctuation">)</span> <span class="token operator">+</span> upper <span class="token operator">*</span> ratio
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">hsvaToRgba</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span> s<span class="token punctuation">,</span> v<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+    h <span class="token operator">=</span> h <span class="token operator">*</span> <span class="token number">360</span>
+
+    <span class="token keyword">local</span> c <span class="token operator">=</span> v <span class="token operator">*</span> s
+    <span class="token keyword">local</span> h2 <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">60.0</span>
+    <span class="token keyword">local</span> x <span class="token operator">=</span> c <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">fmod</span><span class="token punctuation">(</span>h2<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">local</span> r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">&lt;=</span> h2 <span class="token keyword">and</span> h2 <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b <span class="token operator">=</span> c<span class="token punctuation">,</span> x<span class="token punctuation">,</span> <span class="token number">0</span>
+    <span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;=</span> h2 <span class="token keyword">and</span> h2 <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b  <span class="token operator">=</span> x<span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token number">0</span>
+    <span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">&lt;=</span> h2 <span class="token keyword">and</span> h2 <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b  <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> x
+    <span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">&lt;=</span> h2 <span class="token keyword">and</span> h2 <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b  <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> c
+    <span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">&lt;=</span> h2 <span class="token keyword">and</span> h2 <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b  <span class="token operator">=</span> x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> c
+    <span class="token keyword">else</span>
+      r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b  <span class="token operator">=</span> c<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> x
+    <span class="token keyword">end</span>
+
+    <span class="token keyword">local</span> m <span class="token operator">=</span> v <span class="token operator">-</span> c
+
+    r <span class="token operator">=</span> r <span class="token operator">+</span> m
+    g <span class="token operator">=</span> g <span class="token operator">+</span> m
+    b <span class="token operator">=</span> b <span class="token operator">+</span> m
+
+    <span class="token keyword">return</span> r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a
+  <span class="token keyword">end</span>
+
+  field<span class="token punctuation">.</span>targetTextColor <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token function">hsvaToRgba</span><span class="token punctuation">(</span>targetHue<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+  field<span class="token punctuation">.</span>circles <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token keyword">local</span> newCircle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> radius<span class="token punctuation">,</span> hue<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      x <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      y <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      homeX <span class="token operator">=</span> x<span class="token punctuation">,</span>
+      homeY <span class="token operator">=</span> y<span class="token punctuation">,</span>
+      radius <span class="token operator">=</span> radius<span class="token punctuation">,</span>
+      noiseOffset <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10e6</span><span class="token punctuation">,</span> <span class="token number">10e6</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      velocity <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>minVelocity<span class="token punctuation">,</span> maxVelocity<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      homeRadius <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>minHomeRadius<span class="token punctuation">,</span> maxHomeRadius<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      color <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token function">hsvaToRgba</span><span class="token punctuation">(</span>hue<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">local</span> nRows <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>screenW <span class="token operator">/</span> cellSize<span class="token punctuation">)</span>
+  <span class="token keyword">local</span> nColumns <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>screenH <span class="token operator">/</span> cellSize<span class="token punctuation">)</span>
+
+  <span class="token keyword">for</span> rowI <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> nRows <span class="token keyword">do</span>
+    <span class="token keyword">for</span> colI <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> nColumns <span class="token keyword">do</span>
+      <span class="token keyword">local</span> nPerCell <span class="token operator">=</span> love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span>minPerCell<span class="token punctuation">,</span> maxPerCell<span class="token punctuation">)</span>
+      <span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> nPerCell <span class="token keyword">do</span>
+        <span class="token keyword">local</span> x <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>
+          <span class="token punctuation">(</span>rowI <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> cellSize<span class="token punctuation">,</span>
+          <span class="token punctuation">(</span>rowI <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">*</span> cellSize
+        <span class="token punctuation">)</span>
+
+        <span class="token keyword">local</span> y <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>
+          <span class="token punctuation">(</span>colI <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> cellSize<span class="token punctuation">,</span>
+          <span class="token punctuation">(</span>colI <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">*</span> cellSize
+        <span class="token punctuation">)</span>
+
+        <span class="token keyword">local</span> radius <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>minRadius<span class="token punctuation">,</span> maxRadius<span class="token punctuation">)</span>
+        <span class="token keyword">local</span> hue <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>minHue<span class="token punctuation">,</span> maxHue<span class="token punctuation">)</span>
+
+        table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>circles<span class="token punctuation">,</span> <span class="token function">newCircle</span><span class="token punctuation">(</span>
+          x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> radius<span class="token punctuation">,</span> hue
+        <span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">local</span> targetRadius <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>minRadius<span class="token punctuation">,</span> maxRadius<span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> targetMinX <span class="token operator">=</span> <span class="token number">0</span> <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">*</span> targetRadius
+  <span class="token keyword">local</span> targetMaxX <span class="token operator">=</span> screenW <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> targetRadius
+
+  <span class="token keyword">local</span> targetMinY <span class="token operator">=</span> <span class="token number">0</span> <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">*</span> targetRadius
+  <span class="token keyword">local</span> targetMaxY <span class="token operator">=</span> screenH <span class="token operator">-</span> <span class="token number">2</span> <span class="token operator">*</span> targetRadius
+
+  <span class="token keyword">local</span> targetX <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>targetMinX<span class="token punctuation">,</span> targetMaxX<span class="token punctuation">)</span>
+  <span class="token keyword">local</span> targetY <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>targetMinY<span class="token punctuation">,</span> targetMaxY<span class="token punctuation">)</span>
+
+  field<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token function">newCircle</span><span class="token punctuation">(</span>
+    targetX<span class="token punctuation">,</span>
+    targetY<span class="token punctuation">,</span>
+    targetRadius<span class="token punctuation">,</span>
+    targetHue
+  <span class="token punctuation">)</span>
+  field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>homeRadius <span class="token operator">=</span> maxHomeRadius
+
+  field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius <span class="token operator">=</span> spotlightRadius
+
+  field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token number">0</span> <span class="token operator">-</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>radius<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span> <span class="token operator">-</span> field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius<span class="token punctuation">,</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token number">0</span> <span class="token operator">+</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>radius<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span> <span class="token operator">+</span> field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius<span class="token punctuation">,</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token operator">-</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>radius<span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token operator">-</span> field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius
+  <span class="token punctuation">}</span>
+
+  field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>bottom <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token operator">+</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>radius<span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token operator">+</span> field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>radius
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">local</span> font <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">newFont</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span>
+  <span class="token keyword">local</span> fontHeight <span class="token operator">=</span> font<span class="token punctuation">:</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  field<span class="token punctuation">.</span>shootTheText <span class="token operator">=</span> <span class="token string">"shoot the "</span>
+  field<span class="token punctuation">.</span>targetText <span class="token operator">=</span> <span class="token string">"target"</span>
+  field<span class="token punctuation">.</span>scoreText <span class="token operator">=</span> <span class="token string">"score: "</span>
+
+  <span class="token keyword">local</span> margin <span class="token operator">=</span> <span class="token number">20</span>
+
+  <span class="token keyword">local</span> titleWidth <span class="token operator">=</span> font<span class="token punctuation">:</span><span class="token function">getWidth</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>shootTheText<span class="token punctuation">)</span> <span class="token operator">+</span> font<span class="token punctuation">:</span><span class="token function">getWidth</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>targetText<span class="token punctuation">)</span>
+  field<span class="token punctuation">.</span>titleX <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span>screenW <span class="token operator">-</span> titleWidth<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span>
+  field<span class="token punctuation">.</span>titleY <span class="token operator">=</span> margin
+  field<span class="token punctuation">.</span>titleWidth <span class="token operator">=</span> font<span class="token punctuation">:</span><span class="token function">getWidth</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>shootTheText<span class="token punctuation">)</span>
+
+  field<span class="token punctuation">.</span>scoreTextX <span class="token operator">=</span> margin
+  field<span class="token punctuation">.</span>scoreTextY <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>screenH <span class="token operator">-</span> fontHeight <span class="token operator">-</span> margin<span class="token punctuation">)</span>
+
+  field<span class="token punctuation">.</span>font <span class="token operator">=</span> font
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> <span class="token function">drawFieldBelow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">then</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">else</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setLineWidth</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setLineStyle</span><span class="token punctuation">(</span><span class="token string">"smooth"</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> drawCircle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"line"</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span>x<span class="token punctuation">,</span> entry<span class="token punctuation">.</span>y<span class="token punctuation">,</span> entry<span class="token punctuation">.</span>radius <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span>x<span class="token punctuation">,</span> entry<span class="token punctuation">.</span>y<span class="token punctuation">,</span> entry<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">if</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">then</span>
+    <span class="token keyword">for</span> _<span class="token punctuation">,</span> entry <span class="token keyword">in</span> <span class="token function">ipairs</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>circles<span class="token punctuation">)</span> <span class="token keyword">do</span>
+      <span class="token function">drawCircle</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+
+  <span class="token function">drawCircle</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> <span class="token function">drawFieldAbove</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">local</span> x<span class="token punctuation">,</span> y <span class="token operator">=</span> love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">getPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> lineWidth <span class="token operator">=</span> <span class="token number">5</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">translate</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setLineWidth</span><span class="token punctuation">(</span>lineWidth<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>top<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>bottom<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>crosshair<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token string">"fill"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> lineWidth<span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>font<span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> offsets <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>  <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>  <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>  <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>  <span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>  <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> _<span class="token punctuation">,</span> offset <span class="token keyword">in</span> <span class="token function">ipairs</span><span class="token punctuation">(</span>offsets<span class="token punctuation">)</span> <span class="token keyword">do</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">translate</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> offset<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> offset<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>shootTheText<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleX<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleY<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>targetText<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleX <span class="token operator">+</span> field<span class="token punctuation">.</span>titleWidth<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleY<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>scoreText <span class="token operator">..</span> score<span class="token punctuation">,</span> field<span class="token punctuation">.</span>scoreTextX<span class="token punctuation">,</span> field<span class="token punctuation">.</span>scoreTextY<span class="token punctuation">)</span>
+    love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>shootTheText<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleX<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleY<span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>targetTextColor<span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>targetText<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleX <span class="token operator">+</span> field<span class="token punctuation">.</span>titleWidth<span class="token punctuation">,</span> field<span class="token punctuation">.</span>titleY<span class="token punctuation">)</span>
+
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>scoreText <span class="token operator">..</span> score<span class="token punctuation">,</span> field<span class="token punctuation">.</span>scoreTextX<span class="token punctuation">,</span> field<span class="token punctuation">.</span>scoreTextY<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> <span class="token function">checkSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">local</span> x<span class="token punctuation">,</span> y <span class="token operator">=</span> love<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">getPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">local</span> distanceSquared <span class="token operator">=</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token punctuation">(</span>y <span class="token operator">-</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span>
+  <span class="token keyword">if</span> distanceSquared <span class="token operator">&lt;</span> field<span class="token punctuation">.</span>target<span class="token punctuation">.</span>radius<span class="token operator">^</span><span class="token number">2</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">then</span>
+      score <span class="token operator">=</span> score <span class="token operator">+</span> <span class="token number">1</span>
+      field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">=</span> field<span class="token punctuation">.</span>cooldownDuration
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> <span class="token function">updateField</span><span class="token punctuation">(</span>delta<span class="token punctuation">)</span>
+  field<span class="token punctuation">.</span>elapsed <span class="token operator">=</span> field<span class="token punctuation">.</span>elapsed <span class="token operator">+</span> delta
+
+  <span class="token keyword">local</span> before <span class="token operator">=</span> field<span class="token punctuation">.</span>cooldownElapsed
+  field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">=</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">-</span> delta
+
+  <span class="token keyword">if</span> before <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">and</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">then</span>
+    <span class="token function">reinitializeField</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">if</span> field<span class="token punctuation">.</span>cooldownElapsed <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token keyword">return</span> <span class="token keyword">end</span>
+
+  <span class="token keyword">local</span> minX<span class="token punctuation">,</span> minY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+  <span class="token keyword">local</span> maxX<span class="token punctuation">,</span> maxY <span class="token operator">=</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> love<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> updateCircle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>circle<span class="token punctuation">,</span> offset<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> t <span class="token operator">=</span> field<span class="token punctuation">.</span>elapsed <span class="token operator">+</span> circle<span class="token punctuation">.</span>noiseOffset
+
+    <span class="token keyword">local</span> xNoise <span class="token operator">=</span> <span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">perlinNoise</span><span class="token punctuation">(</span>t <span class="token operator">+</span> offset <span class="token operator">*</span> <span class="token number">0.3</span> <span class="token operator">-</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token keyword">local</span> yNoise <span class="token operator">=</span> <span class="token punctuation">(</span>love<span class="token punctuation">.</span>math<span class="token punctuation">.</span><span class="token function">perlinNoise</span><span class="token punctuation">(</span>t <span class="token operator">+</span> offset <span class="token operator">*</span> <span class="token number">0.3</span> <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+
+    <span class="token keyword">local</span> targetX <span class="token operator">=</span> circle<span class="token punctuation">.</span>homeX <span class="token operator">+</span> xNoise <span class="token operator">*</span> circle<span class="token punctuation">.</span>homeRadius
+    <span class="token keyword">local</span> targetY <span class="token operator">=</span> circle<span class="token punctuation">.</span>homeY <span class="token operator">+</span> yNoise <span class="token operator">*</span> circle<span class="token punctuation">.</span>homeRadius
+
+    circle<span class="token punctuation">.</span>x <span class="token operator">=</span> circle<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>targetX <span class="token operator">-</span> circle<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">*</span> delta <span class="token operator">*</span> circle<span class="token punctuation">.</span>velocity
+    circle<span class="token punctuation">.</span>y <span class="token operator">=</span> circle<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>targetY <span class="token operator">-</span> circle<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">*</span> delta <span class="token operator">*</span> circle<span class="token punctuation">.</span>velocity
+
+    circle<span class="token punctuation">.</span>x <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>circle<span class="token punctuation">.</span>x<span class="token punctuation">,</span> minX <span class="token operator">+</span> circle<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+    circle<span class="token punctuation">.</span>x <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>circle<span class="token punctuation">.</span>x<span class="token punctuation">,</span> maxX <span class="token operator">-</span> circle<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+    circle<span class="token punctuation">.</span>y <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>circle<span class="token punctuation">.</span>y<span class="token punctuation">,</span> minX <span class="token operator">+</span> circle<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+    circle<span class="token punctuation">.</span>y <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>circle<span class="token punctuation">.</span>y<span class="token punctuation">,</span> maxX <span class="token operator">-</span> circle<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">for</span> i<span class="token punctuation">,</span> circle <span class="token keyword">in</span> <span class="token function">ipairs</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>circles<span class="token punctuation">)</span> <span class="token keyword">do</span>
+    <span class="token function">updateCircle</span><span class="token punctuation">(</span>circle<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+
+  <span class="token function">updateCircle</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span>target<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+
+
+<footer class="guide-footer">
+  <p></p>
+
+  <p>By:
+  
+      <em>clemapfel</em>
+    
+  </p>
+</footer>
+      </article>
+    </main>
+
+  </body>
+</html>
