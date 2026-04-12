@@ -7,7 +7,7 @@ date: 2025-07-31
 To get started with LÖVE, first things first you need to download it!
 
 You can get the download link for your platform from the website:   
-https://love2d.org/#download
+[https://love2d.org/#download](https://love2d.org/#download)
 
 Once downloaded, see the following section for your platform for steps to install, then jump to the "Running Your Code" for Windows/MacOS/Linux section.
 
@@ -110,7 +110,7 @@ While the drag-and-drop approach is quick, the terminal version will be faster d
 
 If all is successful a window will launch showing a black screen instead of the 'No Game' screen, and you'll see 'Hello LÖVE!' printed in the terminal you ran it from.
 
-![](/assets/img/love/blank_screen.png)
+<img src="/assets/img/love/blank_screen.png">
 
 Now you're ready to start learning Lua and LÖVE!
 
@@ -119,9 +119,9 @@ Now you're ready to start learning Lua and LÖVE!
 At the time of writing, the latest released version of LÖVE is 11.5 (Mysterious Mysteries) - however, the next major version of LÖVE, 12.0 (Bestest Friend), has been in the works for the last year or so and is nearing completion. It's even been used in a few released games!
 
 If you're interested in trying out the new version, you can get the nightly builds from Github, head to the LÖVE repo and go to the actions tab:  
-https://github.com/love2d/love/actions
+[https://github.com/love2d/love/actions](https://github.com/love2d/love/actions)
 
-![](/assets/img/love/12_actions.png)
+<img src="/assets/img/love/12_actions.png">
 
 Any time that new commits are made to LÖVE's source a new build is generated, so you can pick any of the recent successful actions.   
 Click on the successful workflow action and scroll down the page to find the actual zip files to download.
@@ -129,5 +129,5 @@ Click on the successful workflow action and scroll down the page to find the act
 You can then follow the same steps as before with the updated LÖVE executables.
 
 You can view a list of all the changes between 11.5 and 12.0 here:   
-https://love2d.org/wiki/12.0
+[https://love2d.org/wiki/12.0](https://love2d.org/wiki/12.0)  
 Some things of note include changes to `love.physics` to make things easier to scaffold, new `metal` and `vulkan` graphics back-end, and compute shaders!

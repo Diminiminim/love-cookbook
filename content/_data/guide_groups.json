@@ -1,14 +1,9 @@
 [
     {
-        "guide_urls": [
-            "/guides/getting-started/",
-            "/guides/fiddle/"
-        ]
-    },
-    {
         "name": "Installation",
         "summary_url": "/guides/installation/",
         "guide_urls": [
+            "/guides/installation/getting-started/",
             "/guides/installation/love/",
             "/guides/installation/vscode/",
             "/guides/installation/neovim/"
@@ -27,23 +22,25 @@
         ]
     },
     {
-        "name": "Lua Intermediate",
+        "name": "Lua Advanced",
         "guide_urls": [
-            "/guides/lua-intermediate/require/",
-            "/guides/lua-intermediate/scope/",
-            "/guides/lua-intermediate/modulo/",
-            "/guides/lua-intermediate/nested-for-loops/",
-            "/guides/lua-intermediate/standard-library/",
-            "/guides/lua-intermediate/string-patterns/",
-            "/guides/lua-intermediate/ternary-operators/",
-            "/guides/lua-intermediate/metatables/"
+            "/guides/lua-advanced/require/",
+            "/guides/lua-advanced/scope/",
+            "/guides/lua-advanced/modulo/",
+            "/guides/lua-advanced/nested-for-loops/",
+            "/guides/lua-advanced/standard-library/",
+            "/guides/lua-advanced/string-patterns/",
+            "/guides/lua-advanced/ternary-operators/",
+            "/guides/lua-advanced/metatables/",
+            "/guides/lua-advanced/coroutines/"
         ]
     },
     {
-        "name": "LÖVE Basics",
+        "name": "LÖVE Introduction",
         "guide_urls": [
             "/guides/love/drawing-image/",
             "/guides/love/drawing-shapes/",
+            "/guides/love/drawing-text/",
             "/guides/love/playing-audio/",
             "/guides/love/input/",
             "/guides/love/filesystem/",
@@ -52,7 +49,7 @@
         ]
     },
     {
-        "name": "Basics",
+        "name": "Basic Concepts",
         "guide_urls": [
             "/guides/basic/aabb/",
             "/guides/basic/angle-and-distance/",
@@ -63,7 +60,7 @@
         ]
     },
     {
-        "name": "Intermediate",
+        "name": "Advanced Concepts",
         "guide_urls": [
             "/guides/intermediate/oop/",
             "/guides/intermediate/collision-resolving/",
@@ -79,17 +76,31 @@
         ]
     },
     {
-        "name": "Advanced",
+        "name": "Shaders",
         "guide_urls": [
-            "/guides/advanced/physics/",
-            "/guides/advanced/threads/"
+            "/guides/shaders/introduction/",
+            "/guides/shaders/compute-shaders/",
+            "/guides/shaders/box-blur/",
+            "/guides/shaders/outlines/",
+            "/guides/shaders/palette/",
+            "/guides/shaders/pixelation/",
+            "/guides/shaders/vertex-shaders/"
+        ]
+    },
+    {
+        "name": "Exporting",
+        "guide_urls": [
+            "/guides/exporting/distribution/",
+            "/guides/exporting/web-export/",
+            "/guides/exporting/build-tools/"
         ]
     },
     {
         "name": "Recipes",
         "guide_urls": [
             "/guides/recipes/screen-resizing/",
-            "/guides/recipes/steam/"
+            "/guides/recipes/steam/",
+            "/guides/recipes/modding/"
         ]
     }
 ]

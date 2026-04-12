@@ -38,23 +38,23 @@ To get started with LÖVE, it's recommended to have some basic understanding of 
 
 **LÖVE Cookbook**   
 You're already reading it! This Lua Basics section has a bunch of sections that will take you through the syntax, variables, functions, datatypes and general gotchas.   
-https://diminim.github.io/love-cookbook/guides/lua-basics/variables/
+[https://diminim.github.io/love-cookbook/guides/lua-basics/variables/](https://diminim.github.io/love-cookbook/guides/lua-basics/variables/)
 
 **Sheepolution's "How To LÖVE"**   
 This is a general guide to using LÖVE, but starts by introducing the concepts of Lua first.   
-https://sheepolution.com/learn/book/contents
+[https://sheepolution.com/learn/book/contents](https://sheepolution.com/learn/book/contents)
 
 **Programming In Lua**   
 This is the official programming guide for Lua, by the creators themselves. It can be a bit heavy in some places, but does showcase everything Lua has to offer (which can be overkill for what you need).  
-https://www.lua.org/pil/1.html
+[https://www.lua.org/pil/1.html](https://www.lua.org/pil/1.html)
 
 **Learn X in Y minutes**   
 A 'cheatsheet' type guide showcasing the main syntax and features of Lua and explaining how it works, useful once you've already started using Lua as a quick reference to things.
-https://learnxinyminutes.com/lua/
+[https://learnxinyminutes.com/lua/](https://learnxinyminutes.com/lua/)
 
 **Lua Reference Manual**   
 This is the manual for the programming language, and so covers all the syntax and functions available. It's a long read, and while it would probably benefit you to read through it all one day, for now it is better to use as a lookup when you want to learn more about something specific, like functions or metatables.   
-https://www.lua.org/manual/5.0/
+[https://www.lua.org/manual/5.0/](https://www.lua.org/manual/5.0/)
 
 
 ## LuaJIT

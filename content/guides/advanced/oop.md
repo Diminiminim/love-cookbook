@@ -55,9 +55,9 @@ Using an OOP approach might help you break down your game into these different "
 You can also rely on certain things based on the type of class - you know all asteroid objects have a size property, you know all bullet objects have a collide method etc.
 
 There's more to OOP than just the class/object system, but that's outside the scope of this tutorial. If you're interested in learning more you can have a read of the following resources:
-* https://www.freecodecamp.org/news/what-is-object-oriented-programming/
-* https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming
-* https://en.wikipedia.org/wiki/Object-oriented_programming
+* [https://www.freecodecamp.org/news/what-is-object-oriented-programming/](https://www.freecodecamp.org/news/what-is-object-oriented-programming/)
+* [https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming)
+* [https://en.wikipedia.org/wiki/Object-oriented_programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
 
 While some languages provide classes "out the box", Lua doesn't directly - but by using [metatables](../lua-intermediate/metatables) we can create some systems to allow us to implement a robust OOP system.
 
