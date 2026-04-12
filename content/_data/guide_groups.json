@@ -62,17 +62,11 @@
     {
         "name": "Advanced Concepts",
         "guide_urls": [
-            "/guides/intermediate/oop/",
-            "/guides/intermediate/collision-resolving/",
-            "/guides/intermediate/stencils/",
-            "/guides/intermediate/coroutines/",
-            "/guides/intermediate/shaders/",
-            "/guides/intermediate/compute-shaders/",
-            "/guides/intermediate/box-blur/",
-            "/guides/intermediate/outlines/",
-            "/guides/intermediate/palette/",
-            "/guides/intermediate/pixelation/",
-            "/guides/intermediate/vertex-shaders/"
+            "/guides/advanced/oop/",
+            "/guides/advanced/collision-resolving/",
+            "/guides/advanced/stencils/",
+            "/guides/advanced/physics/",
+            "/guides/advanced/threads/"
         ]
     },
     {
