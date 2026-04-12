@@ -56,18 +56,23 @@
             "/guides/basic/tiles/",
             "/guides/basic/animation/",
             "/guides/basic/saving-and-loading/",
-            "/guides/basic/canvases/",
-            "/guides/basic/stencil-modes/"
+            "/guides/basic/canvases/"
         ]
     },
     {
         "name": "Advanced Concepts",
         "guide_urls": [
-            "/guides/advanced/oop/",
-            "/guides/advanced/collision-resolving/",
-            "/guides/advanced/stencil-states/",
-            "/guides/advanced/physics/",
-            "/guides/advanced/threads/"
+            "/guides/intermediate/oop/",
+            "/guides/intermediate/collision-resolving/",
+            "/guides/intermediate/stencils/",
+            "/guides/intermediate/coroutines/",
+            "/guides/intermediate/shaders/",
+            "/guides/intermediate/compute-shaders/",
+            "/guides/intermediate/box-blur/",
+            "/guides/intermediate/outlines/",
+            "/guides/intermediate/palette/",
+            "/guides/intermediate/pixelation/",
+            "/guides/intermediate/vertex-shaders/"
         ]
     },
     {
