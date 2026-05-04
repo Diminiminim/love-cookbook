@@ -49,7 +49,7 @@ main {
 
 .footer-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 1.5rem;
 }
 
