@@ -39,6 +39,30 @@ main {
   margin: 0 1rem;
 }
 
+.footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-faded-2);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
