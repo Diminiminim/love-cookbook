@@ -336,6 +336,8 @@ main {
 }
 
 .guide .code-block code {
+  display: block;
+
   border: none;
   border-radius: 0;
   padding: 0;
