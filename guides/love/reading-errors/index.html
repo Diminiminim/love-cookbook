@@ -338,11 +338,11 @@
 <span class="token keyword">end</span>
 </code></pre>
 <p>Changing that line to instead pass through <code>image</code> and rerunning the code shows us a lovely picture of a whale instead of an error.</p>
-<iframe class="love-embed" id="love-iframe-217" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-984" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_217 = document.getElementById('love-iframe-217');
-iframe_217.addEventListener('load', function() {
-iframe_217.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_984 = document.getElementById('love-iframe-984');
+iframe_984.addEventListener('load', function() {
+iframe_984.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local image = love.graphics.newImage("assets/whale.png")
 function love.draw()
  love.graphics.draw(image, 100, 100)
@@ -391,11 +391,11 @@ end
 <li><code>main.lua:18: in function 'load'</code> - aha!</li>
 </ul>
 <p>Our <code>make_whale</code> function was called from line 18 in main.lua's load function and that call was the one that directly led to the error being thrown. Looking back at our code we can see that line 18 looks a little different from the others with a typo: <code>make_whale(imaeg)</code> should be <code>make_whale(image)</code>!</p>
-<iframe class="love-embed" id="love-iframe-546" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-652" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_546 = document.getElementById('love-iframe-546');
-iframe_546.addEventListener('load', function() {
-iframe_546.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_652 = document.getElementById('love-iframe-652');
+iframe_652.addEventListener('load', function() {
+iframe_652.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local image = love.graphics.newImage("assets/whale.png")
 local whales = {}
 local function make_whale(sprite)

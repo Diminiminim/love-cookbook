@@ -331,11 +331,11 @@ love<span class="token punctuation">.</span>draw <span class="token operator">=<
 <span class="token keyword">end</span>
 </code></pre>
 <p>If you ran the code above you'd see the the following:</p>
-<iframe class="love-embed" id="love-iframe-286" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-433" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_286 = document.getElementById('love-iframe-286');
-iframe_286.addEventListener('load', function() {
-iframe_286.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_433 = document.getElementById('love-iframe-433');
+iframe_433.addEventListener('load', function() {
+iframe_433.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 local button = {
  x = 10,
  y = 20,
@@ -476,11 +476,11 @@ If we add some additional code like:</p>
 <span class="token keyword">end</span>
 </code></pre>
 <p>Then anytime we click the button it'll move! You can try it out below:</p>
-<iframe class="love-embed" id="love-iframe-67" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-742" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_67 = document.getElementById('love-iframe-67');
-iframe_67.addEventListener('load', function() {
-iframe_67.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_742 = document.getElementById('love-iframe-742');
+iframe_742.addEventListener('load', function() {
+iframe_742.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- button 'object'
 local button = { 
  x = 10, y = 20, w = 100, h = 32,
@@ -656,11 +656,11 @@ love<span class="token punctuation">.</span>keypressed <span class="token operat
 </code></pre>
 <p>You can try it out below! Press 'Space' to re-create the boxes in new positions.<br>
 Any boxes that overlap will be rendered in pink - the bounding box lines are also drawn to make things clearer.</p>
-<iframe class="love-embed" id="love-iframe-32" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-933" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_32 = document.getElementById('love-iframe-32');
-iframe_32.addEventListener('load', function() {
-iframe_32.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_933 = document.getElementById('love-iframe-933');
+iframe_933.addEventListener('load', function() {
+iframe_933.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- check overlapping
 function overlapping(b1, b2)
  return b1.x1 < b2.x2 and b1.x2 > b2.x1 and b1.y1 < b2.y2 and b1.y2 > b2.y1
@@ -799,11 +799,11 @@ love<span class="token punctuation">.</span>draw <span class="token operator">=<
 <span class="token keyword">end</span>
 </code></pre>
 <p>You can try it out below here:</p>
-<iframe class="love-embed" id="love-iframe-982" src="/assets/love/love-js" width="800" height="600"></iframe>
+<iframe class="love-embed" id="love-iframe-464" src="/assets/love/love-js" width="800" height="600"></iframe>
 <script>
-const iframe_982 = document.getElementById('love-iframe-982');
-iframe_982.addEventListener('load', function() {
-iframe_982.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
+const iframe_464 = document.getElementById('love-iframe-464');
+iframe_464.addEventListener('load', function() {
+iframe_464.contentWindow.postMessage({lua: `love.window.setMode(800, 600) 
 -- check overlapping
 function overlapping(b1, b2)
  return b1.x1 < b2.x2 and b1.x2 > b2.x1 and b1.y1 < b2.y2 and b1.y2 > b2.y1
