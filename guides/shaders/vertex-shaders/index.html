@@ -305,7 +305,7 @@
 <p>Vertex shaders are programs which calculate the final position of a <a href="#vertex">vertex</a> on screen.</p>
 <div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>This guide is made for LÖVE 12.0!</p>
 </div>
-<p>This guide assumes you've read the <a href="../shaders" data-preview="../shaders">Shaders</a> guide.</p>
+<p>This guide assumes you've read the <a href="../introduction" data-preview="../introduction">Shaders</a> guide.</p>
 <p>Let's start with the standard shader LÖVE uses and break it down.</p>
 <pre><code class="language-glsl"><span data-attrs=""></span><span class="token keyword">varying</span> <span class="token keyword">vec4</span> vpos<span class="token punctuation">;</span>
 
@@ -329,11 +329,11 @@ By default, these values are interpolated, meaning halfway between, for example,
 <span class="token keyword">end</span>
 
 </code></pre>
-<iframe class="love-embed" id="love-iframe-556" src="/assets/love/love-js" width="200" height="200"></iframe>
+<iframe class="love-embed" id="love-iframe-797" src="/assets/love/love-js" width="200" height="200"></iframe>
 <script>
-const iframe_556 = document.getElementById('love-iframe-556');
-iframe_556.addEventListener('load', function() {
-iframe_556.contentWindow.postMessage({lua: `love.window.setMode(200, 200) 
+const iframe_797 = document.getElementById('love-iframe-797');
+iframe_797.addEventListener('load', function() {
+iframe_797.contentWindow.postMessage({lua: `love.window.setMode(200, 200) 
 local PI13 = math.pi * 2 / 3
 local mesh = love.graphics.newMesh({
  { 100 + math.cos(PI13 * 2 + math.pi / 6) * 100, 120 + math.sin(PI13 * 2 + math.pi / 6) * 100, 0, 0, 1, 0, 0 },
@@ -388,7 +388,7 @@ This is done with a <code>vertex format</code> which is the first input when cre
 <p>The first entry defines format of the x, y position of the vertex.
 The location is used to tell the shader where to find this information, we can define this in our shader with <code>layout(location = 0) in vec2 position;</code>.
 the format is <code>floatvec2</code> which is just a <code>vec2</code> in GLSL.</p>
-<p>The second entry defines the <a href="../shaders/#uv-coordinates" data-preview="../shaders/#uv-coordinates">uv</a> coordinates of the vertex.</p>
+<p>The second entry defines the <a href="../introduction/#uv-coordinates" data-preview="../introduction/#uv-coordinates">uv</a> coordinates of the vertex.</p>
 <p>And lastly the third entry defines the color of the vertex.
 This format is a bit different with <code>unorm8vec4</code>, a <code>norm</code> value means it's normalized to the range of [-1, 1]
 and <code>unorm</code> means it's normalized to the range of [0, 1].
