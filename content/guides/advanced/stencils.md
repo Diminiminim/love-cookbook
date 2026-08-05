@@ -9,9 +9,47 @@ date: 2025-02-19
 > [!CAUTION]
 > This guide is made for LÖVE 12.0! These stencil functions are not available in prior versions.
 
+
 This chapter will go over **stencils**, which open up a number of advanced drawing techniques. Stencils allow us to only draw (or not draw) certain parts of a shape or texture to the window or active canvas. Similar to real-world stencils, they let us "cut out" only parts of an image, an effect that would be very hard to achieve otherwise.
 
+#### In this chapter we will learn:
+
++ What a stencil buffer is
++ When to use stencils
++ How to use `setStencilMode`
++ How to use `setStencilState`
+
+## Table of Contents
+
+- [0. TL;DR: Quick Start](#0-tldr-quick-start)
+    - [0.1 setStencilMode Example](#01-setstencilmode-example)
+    - [0.2 setStencilState Example](#02-setstencilstate-example)
+    - [0.3 Clearing the Stencil Buffer](#03-clearing-the-stencil-buffer)
+    - [0.4 Binding a Canvas with Stencils Active](#04-binding-a-canvas-with-stencils-active)
+- [1. Stencil Buffer](#1-stencil-buffer)
+- [2. Stencil Compare Modes & Culling](#2-stencil-compare-modes--culling)
+- [3. `setStencilMode`](#3-setstencilmode)
+    - [3.1 Usage](#31-usage)
+        - [3.1.1 Choosing a Stencil Value](#311-choosing-a-stencil-value-1)
+        - [3.1.2 Enabling Stencil Draw](#312-enabling-stencil-draw-2)
+        - [3.1.3 Enabling Stencil Testing](#313-enabling-stencil-testing-3)
+        - [3.1.4 Disabling Stencil Testing](#314-disabling-stencil-testing-4)
+    - [3.2 A Working Example](#32-a-working-example)
+- [4. `setStencilState`](#4-setstencilstate)
+    - [4.1 Signature](#41-signature)
+    - [4.1 Stencil Action](#41-stencil-action)
+    - [4.2 StencilCompareMode](#42-stencilcomparemode)
+    - [4.3 `setColorMask`](#43-setcolormask)
+    - [4.4 A Working Example](#44-a-working-example)
+        - [4.4.1 Drawing to the Stencil Buffer and Window at the Same Time](#441-drawing-to-the-stencil-buffer-and-window-at-the-same-time)
+        - [4.4.2 Testing Against the Stencil Buffer While Drawing to It](#442-testing-against-the-stencil-buffer-while-drawing-to-it)
+- [5. Example Game](#5-example-game)
+
+---
+
 # 0. TL;DR: Quick Start
+
+#### [\[click here to skip to section 1 of this chapter\]](#1-stencil-buffer)
 
 For those without enough time to read this entire chapter, or people returning for reference purposes, below are example usages of the stencil-related functions in LÖVE 12.
 
