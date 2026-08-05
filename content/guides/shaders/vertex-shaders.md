@@ -9,7 +9,7 @@ Vertex shaders are programs which calculate the final position of a [vertex](#ve
 > [!CAUTION]
 > This guide is made for LÖVE 12.0!
 
-This guide assumes you've read the [Shaders](shaders) guide.
+This guide assumes you've read the [Shaders](introduction) guide.
 
 Let's start with the standard shader LÖVE uses and break it down.
 
@@ -95,7 +95,7 @@ The first entry defines format of the x, y position of the vertex.
 The location is used to tell the shader where to find this information, we can define this in our shader with `layout(location = 0) in vec2 position;`.
 the format is `floatvec2` which is just a `vec2` in GLSL.
 
-The second entry defines the [uv](shaders/#uv-coordinates) coordinates of the vertex.  
+The second entry defines the [uv](introduction/#uv-coordinates) coordinates of the vertex.  
 
 And lastly the third entry defines the color of the vertex.
 This format is a bit different with `unorm8vec4`, a `norm` value means it's normalized to the range of [-1, 1]
