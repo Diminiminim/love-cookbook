@@ -58,6 +58,6 @@ This is the manual for the programming language, and so covers all the syntax an
 
 
 ## LuaJIT
-LÖVE uses a version of Lua called [LuaJIT](https://luajit.org/), a 'Just-In-Time' compiler that converts the your written Lua code into machine code at runtime. This allows the code to be executed extremely fast (and Lua is very fast to begin with!).
+LÖVE uses a version of Lua called [LuaJIT](https://luajit.org/), a 'Just-In-Time' compiler that converts your written Lua code into machine code at runtime. This allows the code to be executed extremely fast (and Lua is very fast to begin with!).
 
 LuaJIT uses Lua version 5.1, but does implement a couple of 5.2 features, as such keep in mind the Lua version when looking up documentation as there are newer Lua versions and features not available in LuaJIT.
