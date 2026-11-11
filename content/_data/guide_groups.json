@@ -5,6 +5,7 @@
         "guide_urls": [
             "/guides/installation/getting-started/",
             "/guides/installation/love/",
+            "/guides/installation/add-to-system-path/",
             "/guides/installation/vscode/",
             "/guides/installation/neovim/"
         ]
