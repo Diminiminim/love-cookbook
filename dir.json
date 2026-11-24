@@ -128,12 +128,6 @@
       },
     
       {
-        "title": "Neovim",
-        "url": "/guides/installation/neovim/",
-        "abstract": ""
-      },
-    
-      {
         "title": "If-statements",
         "url": "/guides/lua-basics/if-statements/",
         "abstract": "A nested statement is when you put a statement (like an if-statement or a for-loop) inside another statement"
@@ -322,6 +316,12 @@
       {
         "title": "Coroutines",
         "url": "/guides/lua-advanced/coroutines/",
+        "abstract": ""
+      },
+    
+      {
+        "title": "Neovim",
+        "url": "/guides/installation/neovim/",
         "abstract": ""
       },
     

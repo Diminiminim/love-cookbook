@@ -12,20 +12,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Neovim</title>
 <meta name="title" content="Neovim">
-<meta name="author" content="Nykenik">
-<meta name="description" content="When using Neovim for LÖVE we need to use S1M0N38's love2d.nvim plugin.">
+<meta name="author" content="Nykenik,S1M0N38">
+<meta name="description" content="When using Neovim for LÖVE, you can use S1M0N38's love2d.nvim plugin.">
 <meta name="generator" content="eleventy">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://love2d.recipes/guides/installation/neovim/">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Neovim">
-<meta property="og:description" content="When using Neovim for LÖVE we need to use S1M0N38's love2d.nvim plugin.">
+<meta property="og:description" content="When using Neovim for LÖVE, you can use S1M0N38's love2d.nvim plugin.">
 <meta property="og:image" content="https://love2d.recipes/assets/logo.png">
 <meta property="og:image:alt" content="LÖVE Cookbook">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:url" content="https://love2d.recipes/guides/installation/neovim/">
 <meta name="twitter:title" content="Neovim">
-<meta name="twitter:description" content="When using Neovim for LÖVE we need to use S1M0N38's love2d.nvim plugin.">
+<meta name="twitter:description" content="When using Neovim for LÖVE, you can use S1M0N38's love2d.nvim plugin.">
 <meta name="twitter:image" content="https://love2d.recipes/assets/logo.png">
 <meta name="twitter:image:alt" content="LÖVE Cookbook">
 <link rel="canonical" href="https://love2d.recipes/guides/installation/neovim/">
@@ -302,77 +302,104 @@
   <h1 class="title">Neovim</h1>
 </header>
 
-<p>When using Neovim for LÖVE we need to use S1M0N38's <a href="https://github.com/S1M0N38/love2d.nvim"><code>love2d.nvim</code></a> plugin.</p>
+<p>When using Neovim for LÖVE, you can use S1M0N38's <a href="https://github.com/S1M0N38/love2d.nvim"><code>love2d.nvim</code></a> plugin.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>This guide covers the setup. The plugin also ships full documentation, so run <code>:help love2d</code> to read it. Learning to navigate <code>:help</code> is one of the most valuable Neovim skills you can pick up.</p>
+</div>
 <h2 id="disclaimer" tabindex="-1">Disclaimer <a class="anchor" href="#disclaimer">#</a></h2>
-<p>This guide already supposes you have a proper <a href="https://github.com/neovim/nvim-lspconfig">lsp configuration</a>, <code>lua_lsp</code> installed and a plugin manager.</p>
-<p>If you don't have any of these, the easiest way is to install an already made Neovim configuration, or a &quot;Neovim distribution&quot;.</p>
+<p>This guide assumes you have <a href="/guides/installation/love">LÖVE installed</a>, <a href="https://luals.github.io/">lua_ls</a> installed and a plugin manager. Neovim 0.12.2 or newer is required, so update Neovim before installing if you're on an older version.</p>
+<p>You don't need <code>nvim-lspconfig</code> anymore. love2d.nvim configures <code>lua_ls</code> with Neovim's built-in LSP functions, so there is nothing to wire up by hand.</p>
+<p>If you don't have any of these, the easiest way is to install a ready-made Neovim configuration, or a &quot;Neovim distribution&quot;.</p>
+<p>If something doesn't work, run <code>:checkhealth love2d</code>. It checks your Neovim version, the LÖVE binary, <code>lua_ls</code>, the type definitions, and the Tree-sitter parsers.</p>
 <h2 id="setup" tabindex="-1">Setup <a class="anchor" href="#setup">#</a></h2>
 <h3 id="installation" tabindex="-1">Installation <a class="anchor" href="#installation">#</a></h3>
-<p>To setup the plugin, first we have to install it. The author of the plugin recommends to use <code>lazy.nvim</code>, so we are going to use it.</p>
+<p>The plugin works with any plugin manager, or with none at all. This guide uses <code>lazy.nvim</code>.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>love2d.nvim 3.0.0 renamed its commands. <code>:LoveRun</code> and <code>:LoveStop</code> are gone; use <code>:Love run</code> and <code>:Love stop</code> instead. If you followed an older version of this guide, update your keymaps.</p>
+</div>
 <p>If you have a single-file setup, go to your <code>init.lua</code> and add this to your lazy setup:</p>
 <pre><code class="language-lua"><span data-attrs=""></span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"lazy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token comment">-- Other plugins...</span>
+  <span class="token comment">-- Other plugins go here.</span>
   <span class="token punctuation">{</span>
     <span class="token string">"S1M0N38/love2d.nvim"</span><span class="token punctuation">,</span>
-    cmd <span class="token operator">=</span> <span class="token string">"LoveRun"</span><span class="token punctuation">,</span>
+    version <span class="token operator">=</span> <span class="token string">"3.*"</span><span class="token punctuation">,</span>
+    event <span class="token operator">=</span> <span class="token string">"VeryLazy"</span><span class="token punctuation">,</span>
     opts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
     keys <span class="token operator">=</span> <span class="token punctuation">{</span>
-      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>v"</span><span class="token punctuation">,</span>   desc <span class="token operator">=</span> <span class="token string">"LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vv"</span><span class="token punctuation">,</span>  <span class="token string">"&lt;cmd>LoveRun&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span>  <span class="token string">"&lt;cmd>LoveStop&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>v"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vr"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love run&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vw"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love watch&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Watch LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vi"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love info&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Info LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love stop&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vo"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love output&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Output panel"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
-<p>Otherwise, if you have a multi-file setup, create a new file in your plugins folder called <code>love2d.lua</code> and copy this into it:</p>
+<p>If you have a multi-file setup, create a new file in your plugins folder called <code>love2d.lua</code> and copy this into it:</p>
 <pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">return</span> <span class="token punctuation">{</span>
   <span class="token string">"S1M0N38/love2d.nvim"</span><span class="token punctuation">,</span>
-  cmd <span class="token operator">=</span> <span class="token string">"LoveRun"</span><span class="token punctuation">,</span>
+  version <span class="token operator">=</span> <span class="token string">"3.*"</span><span class="token punctuation">,</span>
+  event <span class="token operator">=</span> <span class="token string">"VeryLazy"</span><span class="token punctuation">,</span>
   opts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
   keys <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>v"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vv"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>LoveRun&lt;cr>"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>LoveStop&lt;cr>"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>v"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vr"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love run&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vw"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love watch&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Watch LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vi"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love info&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Info LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love stop&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vo"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love output&lt;cr>"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Output panel"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="post-installation" tabindex="-1">Post-installation <a class="anchor" href="#post-installation">#</a></h3>
-<p>After installing the plugin, we must configure it. It has three options:</p>
-<ul>
-<li><code>path_to_love_bin</code>: The path to the <code>love</code> binary. Leave it empty if love is installed system-wide.</li>
-<li><code>path_to_love_library</code>: The path to <a href="https://github.com/LuaCATS/love2d/tree/main/library">the love lua annotation library</a>. Obligatory if you want lsp to automatically setup love annotations. Otherwise, leave it empty.</li>
-<li><code>restart_on_save</code>: If you want open love instances to restart when saving to any file, set this option to true.</li>
-</ul>
-<p>To change this values, modify the <code>opts</code> table in the plugin installation:</p>
-<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">return</span> <span class="token punctuation">{</span>
-  <span class="token comment">-- other..</span>
-  opts <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token comment">-- this are the default values</span>
-    path_to_love_bin <span class="token operator">=</span> <span class="token string">"love"</span><span class="token punctuation">,</span>
-    path_to_love_library <span class="token operator">=</span> vim<span class="token punctuation">.</span>fn<span class="token punctuation">.</span><span class="token function">globpath</span><span class="token punctuation">(</span>vim<span class="token punctuation">.</span>o<span class="token punctuation">.</span>runtimepath<span class="token punctuation">,</span> <span class="token string">"love2d/library"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    restart_on_save <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+<p><strong>Without a plugin manager.</strong> Neovim ships with <code>vim.pack</code>, so no extra plugin manager is needed:</p>
+<pre><code class="language-lua"><span data-attrs=""></span>vim<span class="token punctuation">.</span>pack<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token punctuation">{</span>
+    src <span class="token operator">=</span> <span class="token string">"https://github.com/S1M0N38/love2d.nvim"</span><span class="token punctuation">,</span>
+    version <span class="token operator">=</span> vim<span class="token punctuation">.</span>version<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token string">"3"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token comment">-- keys...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"love2d"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+vim<span class="token punctuation">.</span>keymap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"&lt;leader>vr"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love run&lt;cr>"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+vim<span class="token punctuation">.</span>keymap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"&lt;leader>vw"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love watch&lt;cr>"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> desc <span class="token operator">=</span> <span class="token string">"Watch LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+vim<span class="token punctuation">.</span>keymap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"&lt;leader>vi"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love info&lt;cr>"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> desc <span class="token operator">=</span> <span class="token string">"Info LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+vim<span class="token punctuation">.</span>keymap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love stop&lt;cr>"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+vim<span class="token punctuation">.</span>keymap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"&lt;leader>vo"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>Love output&lt;cr>"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> desc <span class="token operator">=</span> <span class="token string">"Output panel"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="post-installation" tabindex="-1">Post-installation <a class="anchor" href="#post-installation">#</a></h3>
+<p>After installing the plugin, you can configure it. It has three options:</p>
+<ul>
+<li><code>path_to_love_bin</code>: The path to the <code>love</code> binary. Leave it as <code>&quot;love&quot;</code> if LÖVE is installed system-wide. On macOS, if you installed LÖVE as an <code>.app</code>, set it to <code>&quot;/Applications/love.app/Contents/MacOS/love&quot;</code>.</li>
+<li><code>lsp</code>: Whether love2d.nvim should configure <code>lua_ls</code> for LÖVE projects automatically. It's <code>true</code> by default. Set it to <code>false</code> if you prefer to configure <code>lua_ls</code> yourself.</li>
+<li><code>output</code>: Controls the floating output panel. It opens automatically by default. Set it to <code>false</code> to keep it closed, or pass a table of window options to customize it.</li>
+</ul>
+<p>To change these values, modify the <code>opts</code> table in the plugin installation:</p>
+<pre><code class="language-lua"><span data-attrs=""></span><span class="token keyword">return</span> <span class="token punctuation">{</span>
+  <span class="token comment">-- Other options go here.</span>
+  opts <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">-- These are the default values.</span>
+    path_to_love_bin <span class="token operator">=</span> <span class="token string">"love"</span><span class="token punctuation">,</span>
+    lsp <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+    output <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">-- Keymaps go here.</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h2 id="usage" tabindex="-1">Usage <a class="anchor" href="#usage">#</a></h2>
-<p>After completing the plugin's setup, we now can use it to develop games with LÖVE and Neovim.</p>
-<p>To run a new LÖVE instance, run the command <code>:LoveRun</code> to start. You have to do this in the same directory with the <code>main.lua</code> file. To stop LÖVE, run the <code>:LoveStop</code> command.</p>
-<p>The plugin will load when running <code>:LoveRun</code> by default, so it will not recognize the <code>love</code> variable until you run a LÖVE instance. To make it load when Neovim is started, comment (or completely remove) the <code>cmd</code> line:</p>
-<pre><code class="language-lua"><span data-attrs=""></span><span class="token punctuation">{</span>
-  <span class="token string">"S1M0N38/love2d.nvim"</span><span class="token punctuation">,</span>
-  <span class="token comment">--cmd = "LoveRun",</span>
-  opts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-  keys <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>v"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vv"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>LoveRun&lt;cr>"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Run LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span> <span class="token string">"&lt;leader>vs"</span><span class="token punctuation">,</span> <span class="token string">"&lt;cmd>LoveStop&lt;cr>"</span><span class="token punctuation">,</span> ft <span class="token operator">=</span> <span class="token string">"lua"</span><span class="token punctuation">,</span> desc <span class="token operator">=</span> <span class="token string">"Stop LÖVE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<p>With the plugin set up, you can now develop games with LÖVE and Neovim.</p>
+<p>Start Neovim from your project folder. love2d.nvim finds the project by looking for a <code>main.lua</code> or <code>conf.lua</code> in the current folder or any parent folder. You don't need to open the exact folder containing <code>main.lua</code>.</p>
+<p>All commands are grouped under a single <code>:Love</code> command with subcommands:</p>
+<ul>
+<li><code>:Love run</code> (<code>&lt;leader&gt;vr</code>): Run the project.</li>
+<li><code>:Love watch</code> (<code>&lt;leader&gt;vw</code>): Run the project and restart it every time you save a Lua file. This is the usual way to work.</li>
+<li><code>:Love stop</code> (<code>&lt;leader&gt;vs</code>): Stop the running project and exit watch mode.</li>
+<li><code>:Love info</code> (<code>&lt;leader&gt;vi</code>): Show the detected project, its entry point, and whether it's running.</li>
+<li><code>:Love output</code> (<code>&lt;leader&gt;vo</code>): Show or hide the output panel containing the game's <code>print</code> and error output.</li>
+</ul>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>By default LÖVE opens a graphical error screen when the game crashes, so that output never reaches Neovim. To send errors to the output panel and to your editor's diagnostics, your game needs a custom error handler — see <code>:help love2d-gamesetup</code>.</p>
+</div>
+<p>No extra configuration is needed for <code>love.</code> completions to work. When love2d.nvim detects a LÖVE project, it configures <code>lua_ls</code> with LÖVE's type definitions and the LuaJIT runtime, so completions, hover help (<code>K</code>), and go-to-definition work as in any other Lua project. When you leave the project, those settings are removed.</p>
 <h2 id="glsl-highlighting" tabindex="-1">GLSL highlighting <a class="anchor" href="#glsl-highlighting">#</a></h2>
-<p>As a bonus, we can also get shader syntax highlighting.</p>
-<p>To do this, just install the parser for GLSL with <code>:TSInstall</code>. After doing so, Neovim will recognize the strings passed to <code>love.graphics.newShader()</code> as GLSL code.</p>
+<p>As a bonus, you can enable shader syntax highlighting.</p>
+<p>To do this, install the GLSL parser with <code>:TSInstall glsl</code>. After doing so, Neovim will recognize the strings passed to <code>love.graphics.newShader()</code> as GLSL code.</p>
 
 
 <footer class="guide-footer">
@@ -381,6 +408,8 @@
   <p>By:
   
       <em>Nykenik</em>
+    
+      <em>S1M0N38</em>
     
   </p>
 </footer>
